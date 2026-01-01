@@ -34,7 +34,7 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Link href="/projects">
+            <Link href="/projects">
                 <motion.button
                   className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/30 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]"
                   whileHover={{ x: -4 }}
@@ -47,12 +47,12 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
                     animate={{ x: [0, -2, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                     className="relative z-10"
-                  >
+              >
                     <ArrowLeft className="h-4 w-4" />
                   </motion.div>
                   <span className="relative z-10">Back to projects</span>
                 </motion.button>
-              </Link>
+            </Link>
             </motion.div>
           </div>
         </section>

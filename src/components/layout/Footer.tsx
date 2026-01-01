@@ -12,7 +12,7 @@ export const Footer = () => {
 
   return (
     <footer className="relative border-t border-white/5 bg-[#0a0a0f]" suppressHydrationWarning>
-      <div className="mx-auto max-w-7xl px-6 py-20">
+      <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Left side - CTA */}
           <motion.div
