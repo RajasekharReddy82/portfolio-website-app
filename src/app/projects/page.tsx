@@ -40,6 +40,14 @@ export default function Projects() {
     });
   }, [searchQuery, selectedTech]);
 
+  const clientProjects = useMemo(() => {
+    return filteredProjects.filter((project) => !project.isPersonal);
+  }, [filteredProjects]);
+
+  const personalProjects = useMemo(() => {
+    return filteredProjects.filter((project) => project.isPersonal);
+  }, [filteredProjects]);
+
   return (
     <>
       <CustomCursor />
@@ -145,65 +153,148 @@ export default function Projects() {
 
             {/* Projects Grid */}
             <section className="pb-16">
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-6 space-y-16">
             <AnimatePresence mode="wait">
               {filteredProjects.length > 0 ? (
-                <motion.div
-                  key="projects"
-                  className="grid gap-6 md:grid-cols-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  {filteredProjects.map((project, index) => (
+                <>
+                  {/* Client Projects Section */}
+                  {clientProjects.length > 0 && (
                     <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      key="client-projects"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                     >
-                      <Link href={`/projects/${project.slug}`}>
-                        <GlowCard>
-                          <div className="group relative">
-                            {/* Project number */}
-                            <div className="absolute -right-2 -top-2 font-display text-7xl font-bold text-white/5">
-                              0{index + 1}
-                            </div>
+                      <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-2xl md:text-3xl font-display font-bold text-white mb-8"
+                      >
+                        <TextReveal>Client Projects</TextReveal>
+                      </motion.h2>
+                      <div className="grid gap-6 md:grid-cols-2">
+                        {clientProjects.map((project, index) => (
+                          <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                          >
+                            <Link href={`/projects/${project.slug}`}>
+                              <GlowCard>
+                                <div className="group relative">
+                                  {/* Project number */}
+                                  <div className="absolute -right-2 -top-2 font-display text-7xl font-bold text-white/5">
+                                    0{index + 1}
+                                  </div>
 
-                            <div className="relative z-10">
-                              <div className="flex items-start justify-between gap-4 mb-4">
-                                <div>
-                                  <div className="text-sm text-cyan-400 mb-2">{project.duration}</div>
-                                  <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                                    {project.title}
-                                  </h3>
-                                  <p className="text-sm text-white/40">{project.role}</p>
+                                  <div className="relative z-10">
+                                    <div className="flex items-start justify-between gap-4 mb-4">
+                                      <div>
+                                        <div className="text-sm text-cyan-400 mb-2">{project.duration}</div>
+                                        <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                          {project.title}
+                                        </h3>
+                                        <p className="text-sm text-white/40">{project.role}</p>
+                                      </div>
+                                      <ArrowUpRight className="h-6 w-6 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                                    </div>
+
+                                    <p className="text-white/50 line-clamp-2 mb-6">{project.problem}</p>
+
+                                    <div className="flex flex-wrap gap-2">
+                                      {project.techStack.slice(0, 4).map((tech) => (
+                                        <Badge key={tech} variant="primary" className="text-xs">
+                                          {tech}
+                                        </Badge>
+                                      ))}
+                                      {project.techStack.length > 4 && (
+                                        <Badge variant="default" className="text-xs">
+                                          +{project.techStack.length - 4}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </div>
                                 </div>
-                                <ArrowUpRight className="h-6 w-6 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                              </div>
-
-                              <p className="text-white/50 line-clamp-2 mb-6">{project.problem}</p>
-
-                              <div className="flex flex-wrap gap-2">
-                                {project.techStack.slice(0, 4).map((tech) => (
-                                  <Badge key={tech} variant="primary" className="text-xs">
-                                    {tech}
-                                  </Badge>
-                                ))}
-                                {project.techStack.length > 4 && (
-                                  <Badge variant="default" className="text-xs">
-                                    +{project.techStack.length - 4}
-                                  </Badge>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </GlowCard>
-                      </Link>
+                              </GlowCard>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </motion.div>
-                  ))}
-                </motion.div>
+                  )}
+
+                  {/* Personal Projects Section */}
+                  {personalProjects.length > 0 && (
+                    <motion.div
+                      key="personal-projects"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-2xl md:text-3xl font-display font-bold text-white mb-8"
+                      >
+                        <TextReveal>Personal Projects</TextReveal>
+                      </motion.h2>
+                      <div className="grid gap-6 md:grid-cols-2">
+                        {personalProjects.map((project, index) => (
+                          <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                          >
+                            <Link href={`/projects/${project.slug}`}>
+                              <GlowCard>
+                                <div className="group relative">
+                                  {/* Project number */}
+                                  <div className="absolute -right-2 -top-2 font-display text-7xl font-bold text-white/5">
+                                    0{index + 1}
+                                  </div>
+
+                                  <div className="relative z-10">
+                                    <div className="flex items-start justify-between gap-4 mb-4">
+                                      <div>
+                                        <div className="text-sm text-cyan-400 mb-2">{project.duration}</div>
+                                        <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                          {project.title}
+                                        </h3>
+                                        <p className="text-sm text-white/40">{project.role}</p>
+                                      </div>
+                                      <ArrowUpRight className="h-6 w-6 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                                    </div>
+
+                                    <p className="text-white/50 line-clamp-2 mb-6">{project.problem}</p>
+
+                                    <div className="flex flex-wrap gap-2">
+                                      {project.techStack.slice(0, 4).map((tech) => (
+                                        <Badge key={tech} variant="primary" className="text-xs">
+                                          {tech}
+                                        </Badge>
+                                      ))}
+                                      {project.techStack.length > 4 && (
+                                        <Badge variant="default" className="text-xs">
+                                          +{project.techStack.length - 4}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                  </div>
+                                </div>
+                              </GlowCard>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </>
               ) : (
                 <motion.div
                   key="empty"

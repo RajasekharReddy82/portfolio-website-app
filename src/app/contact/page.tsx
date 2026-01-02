@@ -18,27 +18,46 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    
-    // Auto-hide success message after 5 seconds
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      setShowSuccess(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      
+      // Auto-hide success message after 3 seconds
+      setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -313,38 +332,58 @@ export default function Contact() {
                   </p>
                 </div>
 
-                {/* Success Message */}
+                {/* Error Message - Top of Form */}
                 <AnimatePresence>
-                  {showSuccess && (
+                  {error && (
                     <motion.div
-                      initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                      initial={{ opacity: 0, y: -50, scale: 0.8 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                      className="mb-6 relative overflow-hidden rounded-2xl border border-green-400/30 bg-gradient-to-br from-green-500/10 via-green-400/5 to-transparent backdrop-blur-sm p-6 shadow-[0_8px_32px_rgba(34,197,94,0.2)]"
+                      exit={{ opacity: 0, y: -50, scale: 0.8 }}
+                      transition={{ 
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 25,
+                        duration: 0.5
+                      }}
+                      className="mb-6 relative overflow-hidden rounded-2xl border-2 border-red-400/50 bg-gradient-to-br from-red-500/20 via-red-400/15 to-rose-500/10 backdrop-blur-xl p-5 shadow-[0_0_40px_rgba(239,68,68,0.4)]"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/10 to-transparent opacity-50" />
-                      <div className="relative z-10 flex items-start gap-4">
+                      {/* Animated background glow */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-red-400/0 via-red-400/30 to-red-400/0"
+                        animate={{
+                          x: ["-100%", "200%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      />
+                      
+                      <div className="relative z-10 flex items-center gap-4">
                         <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                          className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-400/20 border border-green-400/30 flex-shrink-0"
+                          initial={{ scale: 0, rotate: 180 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 200,
+                            damping: 15,
+                            delay: 0.1
+                          }}
+                          className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-red-400 to-rose-500 shadow-lg shadow-red-400/50 flex-shrink-0"
                         >
-                          <CheckCircle2 className="h-6 w-6 text-green-400" />
+                          <X className="h-7 w-7 text-white" strokeWidth={2.5} />
                         </motion.div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-white mb-1">Message Sent Successfully!</h3>
-                          <p className="text-sm text-white/70">
-                            Thank you for your message. I&apos;ll get back to you as soon as possible.
-                          </p>
+                          <h3 className="text-lg font-bold text-white mb-1">Error Sending Message</h3>
+                          <p className="text-sm text-white/90">{error}</p>
                         </div>
                         <button
-                          onClick={() => setShowSuccess(false)}
-                          className="flex-shrink-0 p-1 rounded-lg hover:bg-white/10 transition-colors"
-                          aria-label="Close success message"
+                          onClick={() => setError(null)}
+                          className="flex-shrink-0 p-2 rounded-lg hover:bg-white/10 transition-colors"
+                          aria-label="Close error message"
                         >
-                          <X className="h-4 w-4 text-white/60 hover:text-white" />
+                          <X className="h-5 w-5 text-white/80 hover:text-white" />
                         </button>
                       </div>
                     </motion.div>
@@ -356,7 +395,7 @@ export default function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-white/[0.03] via-cyan-500/[0.02] to-purple-500/[0.02] backdrop-blur-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+                  className="relative overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-white/[0.03] via-cyan-500/[0.02] to-purple-500/[0.02] backdrop-blur-xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.3)] min-h-[600px]"
                 >
                   {/* Animated background gradient */}
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/5 to-purple-500/0 opacity-0 hover:opacity-100 transition-opacity duration-700" />
@@ -364,7 +403,70 @@ export default function Contact() {
                   {/* Shimmer effect */}
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent hover:translate-x-full transition-transform duration-2000" />
 
-                  <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
+                  {/* Success Message - Inside Form, Right Side */}
+                  <AnimatePresence>
+                    {showSuccess && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 100, scale: 0.9 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: 100, scale: 0.9 }}
+                        transition={{ 
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 25,
+                          duration: 0.6
+                        }}
+                        className="absolute top-8 right-8 z-20 w-[320px] overflow-hidden rounded-2xl border-2 border-green-400/60 bg-gradient-to-br from-green-500/25 via-green-400/20 to-emerald-500/15 backdrop-blur-xl p-6 shadow-[0_0_50px_rgba(34,197,94,0.5)]"
+                      >
+                        {/* Animated background glow */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/40 to-green-400/0"
+                          animate={{
+                            x: ["-100%", "200%"],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "linear"
+                          }}
+                        />
+                        
+                        <div className="relative z-10 flex flex-col items-center text-center gap-3">
+                          <motion.div
+                            initial={{ scale: 0, rotate: -180 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ 
+                              type: "spring",
+                              stiffness: 200,
+                              damping: 15,
+                              delay: 0.2
+                            }}
+                            className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg shadow-green-400/60 flex-shrink-0"
+                          >
+                            <CheckCircle2 className="h-8 w-8 text-white" strokeWidth={2.5} />
+                          </motion.div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white mb-2">Success!</h3>
+                            <p className="text-sm text-white/90 leading-relaxed">
+                              Your message has been sent successfully. I&apos;ll get back to you soon.
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <AnimatePresence mode="wait">
+                    {!showSuccess ? (
+                      <motion.form
+                        key="form"
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4 }}
+                        onSubmit={handleSubmit}
+                        className="relative z-10 space-y-6"
+                      >
                     <div className="grid gap-6 md:grid-cols-2">
                       <motion.div
                         className="group"
@@ -431,6 +533,33 @@ export default function Contact() {
                       transition={{ duration: 0.4, delay: 0.2 }}
                     >
                       <label
+                        htmlFor="phone"
+                        className="block text-sm font-semibold text-white/90 mb-2.5 group-focus-within:text-cyan-400 transition-colors"
+                      >
+                        Phone Number
+                      </label>
+                      <div className="relative">
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
+                          placeholder="(555) 123-4567"
+                        />
+                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                      </div>
+                    </motion.div>
+
+                    <motion.div
+                      className="group"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.25 }}
+                    >
+                      <label
                         htmlFor="subject"
                         className="block text-sm font-semibold text-white/90 mb-2.5 group-focus-within:text-cyan-400 transition-colors"
                       >
@@ -456,7 +585,7 @@ export default function Contact() {
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.25 }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
                     >
                       <label
                         htmlFor="message"
@@ -483,55 +612,45 @@ export default function Contact() {
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 }}
+                      transition={{ duration: 0.4, delay: 0.35 }}
                     >
                       <motion.button
                         type="submit"
                         disabled={isSubmitting}
-                        className="group relative w-full overflow-hidden rounded-xl border border-cyan-400/40 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-cyan-500/10 px-8 py-5 font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-400/60 hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] disabled:opacity-50 disabled:cursor-not-allowed"
-                        whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
-                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+                        className="group relative w-full overflow-hidden rounded-xl border border-cyan-400/40 bg-gradient-to-r from-cyan-500/20 via-cyan-400/15 to-cyan-500/20 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                        whileHover={!isSubmitting ? { scale: 1.01 } : {}}
+                        whileTap={!isSubmitting ? { scale: 0.99 } : {}}
                       >
                         {/* Animated gradient background */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-purple-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-purple-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                         
                         {/* Shine sweep effect */}
-                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
+                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
                         
-                        {/* Pulsing glow */}
-                        <motion.div
-                          className="absolute inset-0 bg-cyan-400/20 rounded-xl blur-xl"
-                          animate={{ opacity: [0.3, 0.6, 0.3] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                        
-                        <span className="relative z-10 flex items-center justify-center gap-3 text-lg">
+                        <span className="relative z-10 flex items-center justify-center gap-2.5 text-base">
                           {isSubmitting ? (
                             <>
                               <motion.div
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                               >
-                                <div className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full" />
+                                <div className="h-4 w-4 border-2 border-white/40 border-t-white rounded-full" />
                               </motion.div>
                               Sending...
                             </>
                           ) : (
                             <>
-                              <motion.div
-                                animate={{ rotate: [0, 10, -10, 0] }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                              >
-                                <Send className="h-5 w-5" />
-                              </motion.div>
+                              <Send className="h-4 w-4" />
                               Send Message
-                              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </>
                           )}
                         </span>
                       </motion.button>
                     </motion.div>
-                  </form>
+                      </motion.form>
+                    ) : null}
+                  </AnimatePresence>
                 </motion.div>
               </motion.div>
             </div>

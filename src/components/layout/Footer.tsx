@@ -12,9 +12,8 @@ export const Footer = () => {
 
   return (
     <footer className="relative border-t border-white/5 bg-[#0a0a0f]" suppressHydrationWarning>
-      <div className="mx-auto max-w-7xl px-6 py-10">
+      <div className="mx-auto max-w-7xl px-6 py-6">
         <div className="grid gap-12 lg:grid-cols-2">
-          {/* Left side - CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +37,6 @@ export const Footer = () => {
             </Link>
           </motion.div>
 
-          {/* Right side - Links & Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +52,6 @@ export const Footer = () => {
                 {[
                   { href: "/about", label: "About" },
                   { href: "/projects", label: "Projects" },
-                  { href: "/experience", label: "Experience" },
                   { href: "/resume", label: "Resume" },
                 ].map((link) => (
                   <Link
@@ -97,7 +94,6 @@ export const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Bottom bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

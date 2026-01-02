@@ -48,17 +48,19 @@ export const NumberCounter = ({
     return unsubscribe;
   }, [display]);
 
+  const hasGradient = className.includes("bg-gradient") || className.includes("bg-clip-text");
+  
   return (
     <motion.span
       ref={ref}
-      className={className}
+      className={hasGradient ? "" : className}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5 }}
     >
       {prefix}
-      {displayValue}
-      {suffix}
+      <span className={hasGradient ? className : ""}>{displayValue}</span>
+      {suffix && <span className={hasGradient ? className : ""}>{suffix}</span>}
     </motion.span>
   );
 };

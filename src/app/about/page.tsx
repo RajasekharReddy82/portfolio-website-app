@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Mail, Phone, Linkedin, CheckCircle, Award, ExternalLink, Calendar, Building2 } from "lucide-react";
+import { MapPin, Mail, Phone, Linkedin, CheckCircle, Award, ExternalLink, Calendar, Building2, Briefcase } from "lucide-react";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
@@ -98,63 +98,97 @@ export default function About() {
         <section className="pb-16">
           <div className="container mx-auto px-6">
             <div className="grid gap-8 lg:grid-cols-2">
-              {/* Personal Info */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <GlowCard>
-                  <div className="mb-6">
-                    <h2 className="font-display text-3xl font-bold text-white">
-                      {resumeData.personal.name}
-                    </h2>
-                    <p className="mt-2 text-lg text-cyan-400">{resumeData.personal.role}</p>
-                  </div>
+              {/* Left Column */}
+              <div className="space-y-8">
+                {/* Personal Info */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <GlowCard>
+                    <div className="mb-6">
+                      <h2 className="font-display text-3xl font-bold text-white">
+                        {resumeData.personal.name}
+                      </h2>
+                      <p className="mt-2 text-lg text-cyan-400">{resumeData.personal.role}</p>
+                    </div>
 
-                  <div className="space-y-4 text-white/60">
-                    <div className="flex items-center gap-3">
-                      <MapPin size={18} className="text-cyan-400" />
-                      <span>{resumeData.personal.location}</span>
+                    <div className="space-y-4 text-white/60">
+                      <div className="flex items-center gap-3">
+                        <MapPin size={18} className="text-cyan-400" />
+                        <span>{resumeData.personal.location}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Mail size={18} className="text-cyan-400" />
+                        <a
+                          href={`mailto:${resumeData.personal.email}`}
+                          className="hover:text-cyan-400 transition-colors"
+                          data-cursor="Email"
+                        >
+                          {resumeData.personal.email}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Phone size={18} className="text-cyan-400" />
+                        <a
+                          href={`tel:${resumeData.personal.phone}`}
+                          className="hover:text-cyan-400 transition-colors"
+                          data-cursor="Call"
+                        >
+                          {resumeData.personal.phone}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Linkedin size={18} className="text-cyan-400" />
+                        <a
+                          href={`https://${resumeData.personal.linkedin}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-cyan-400 transition-colors"
+                          data-cursor="LinkedIn"
+                        >
+                          LinkedIn Profile
+                        </a>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Mail size={18} className="text-cyan-400" />
-                      <a
-                        href={`mailto:${resumeData.personal.email}`}
-                        className="hover:text-cyan-400 transition-colors"
-                        data-cursor="Email"
-                      >
-                        {resumeData.personal.email}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Phone size={18} className="text-cyan-400" />
-                      <a
-                        href={`tel:${resumeData.personal.phone}`}
-                        className="hover:text-cyan-400 transition-colors"
-                        data-cursor="Call"
-                      >
-                        {resumeData.personal.phone}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Linkedin size={18} className="text-cyan-400" />
-                      <a
-                        href={`https://${resumeData.personal.linkedin}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-cyan-400 transition-colors"
-                        data-cursor="LinkedIn"
-                      >
-                        LinkedIn Profile
-                      </a>
-                    </div>
-                  </div>
-                </GlowCard>
-              </motion.div>
+                  </GlowCard>
+                </motion.div>
 
-              {/* Summary */}
+                {/* Education */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <GlowCard>
+                    <h3 className="mb-6 font-display text-2xl font-bold text-white">
+                      Education
+                    </h3>
+                    <div className="space-y-4">
+                      {resumeData.education.map((edu, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          className="pb-4 border-b border-white/5 last:border-0 last:pb-0"
+                        >
+                          <div className="text-sm text-cyan-400 mb-1">{edu.year}</div>
+                          <h4 className="text-lg font-semibold text-white mb-1">{edu.degree}</h4>
+                          <p className="text-white/50 text-sm mb-1">{edu.institution}</p>
+                          <p className="text-white/40 text-xs">{edu.grade}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </GlowCard>
+                </motion.div>
+              </div>
+
+              {/* Right Column - Summary */}
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -190,7 +224,7 @@ export default function About() {
           </div>
         </section>
 
-        {/* Education */}
+        {/* Skills */}
         <section className="pb-16">
           <div className="container mx-auto px-6">
             <motion.div
@@ -201,27 +235,141 @@ export default function About() {
               className="mb-12"
             >
               <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
-                <TextReveal>Education</TextReveal>
+                <TextReveal>Technical</TextReveal>{" "}
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                  <TextReveal delay={0.2}>Skills</TextReveal>
+                </span>
               </h2>
             </motion.div>
 
-            <div className="grid gap-6 md:grid-cols-3">
-              {resumeData.education.map((edu, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <GlowCard className="h-full">
-                    <div className="text-sm text-cyan-400 mb-2">{edu.year}</div>
-                    <h3 className="text-xl font-semibold text-white mb-1">{edu.degree}</h3>
-                    <p className="text-white/50 mb-2">{edu.institution}</p>
-                    <p className="text-white/40 text-sm">{edu.grade}</p>
-                  </GlowCard>
-                </motion.div>
-              ))}
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {resumeData.skills.map((skillCategory, index) => {
+                const categoryColors: Record<string, string> = {
+                  "UI Technologies": "from-cyan-400 to-cyan-600",
+                  "JavaScript/TypeScript": "from-yellow-400 to-yellow-600",
+                  "Frameworks": "from-blue-400 to-blue-600",
+                  "State Management & Data Fetching": "from-purple-400 to-purple-600",
+                  "Testing": "from-green-400 to-green-600",
+                  "Tools & Platforms": "from-orange-400 to-orange-600",
+                };
+                const gradientColor = categoryColors[skillCategory.category] || "from-gray-400 to-gray-600";
+                return (
+                  <motion.div
+                    key={skillCategory.category}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    <GlowCard className="h-full">
+                      <div className="flex items-center gap-4 mb-6">
+                        <div
+                          className={`h-12 w-12 rounded-xl bg-gradient-to-br ${gradientColor} flex items-center justify-center text-white font-bold text-lg`}
+                        >
+                          {skillCategory.category[0]}
+                        </div>
+                        <h3 className="text-xl font-bold text-white">{skillCategory.category}</h3>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {skillCategory.items.map((item) => (
+                          <motion.div
+                            key={item}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.3 }}
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            <Badge variant="primary">{item}</Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </GlowCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Experience */}
+        <section className="pb-16">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mb-12"
+            >
+              <h2 className="font-display text-4xl font-bold tracking-tight md:text-5xl">
+                <TextReveal>Work</TextReveal>{" "}
+                <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                  <TextReveal delay={0.2}>Experience</TextReveal>
+                </span>
+              </h2>
+            </motion.div>
+
+            <div className="relative">
+              {/* Timeline line */}
+              <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400 via-purple-500 to-transparent md:left-1/2" />
+
+              <div className="space-y-12">
+                {resumeData.experience.map((exp, index) => (
+                  <motion.div
+                    key={exp.id}
+                    className="relative"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div
+                      className={`flex flex-col gap-8 md:flex-row ${
+                        index % 2 === 0 ? "" : "md:flex-row-reverse"
+                      }`}
+                    >
+                      {/* Content */}
+                      <div className={`flex-1 pl-20 md:pl-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
+                        <GlowCard>
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/20">
+                              <Briefcase size={20} className="text-cyan-400" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-white">{exp.role}</h3>
+                              <p className="text-cyan-400">{exp.company}</p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-4 text-sm text-white/50 mb-4">
+                            <span>{exp.duration}</span>
+                            {exp.location && (
+                              <>
+                                <span>•</span>
+                                <span className="flex items-center gap-1">
+                                  <MapPin size={14} />
+                                  {exp.location}
+                                </span>
+                              </>
+                            )}
+                          </div>
+
+                          {exp.description && (
+                            <p className="text-white/70">{exp.description}</p>
+                          )}
+                        </GlowCard>
+                      </div>
+
+                      {/* Hidden spacer for layout */}
+                      <div className="hidden flex-1 md:block" />
+                    </div>
+
+                    {/* Timeline dot */}
+                    <div className="absolute left-8 top-8 h-4 w-4 -translate-x-1/2 rounded-full border-4 border-[#0a0a0f] bg-cyan-400 md:left-1/2" />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

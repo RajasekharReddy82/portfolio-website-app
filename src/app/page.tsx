@@ -80,7 +80,6 @@ export default function Home() {
           {/* Morphing blobs */}
           <MorphingBlob color="cyan" size="xl" className="-left-64 top-20 opacity-60" />
           <MorphingBlob color="purple" size="xl" className="-right-64 bottom-20 opacity-60" />
-          <MorphingBlob color="mixed" size="lg" className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30" />
 
           <motion.div
             className="container mx-auto px-6 text-center relative z-10"
@@ -244,7 +243,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack Marquee */}
-        <section className="py-8 border-y border-white/5">
+        <section className="py-4 border-y border-white/5">
           <Marquee speed={40}>
             {techStack.map((tech, i) => (
               <span
@@ -258,9 +257,9 @@ export default function Home() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16">
+        <section className="py-12">
           <div className="container mx-auto px-6">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -269,14 +268,15 @@ export default function Home() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                 >
-                  <GradientBorder className="p-8 text-center">
-                    <div className="text-5xl md:text-6xl font-display font-bold text-white mb-2">
+                  <GradientBorder className="p-6 text-center group hover:border-cyan-400/30 transition-colors">
+                    <div className="text-4xl md:text-5xl font-display font-bold mb-2">
                       <NumberCounter
                         value={stat.value}
                         suffix={stat.suffix}
+                        className="text-white"
                       />
                     </div>
-                    <div className="text-sm text-white/40 uppercase tracking-wider">
+                    <div className="text-xs text-white/50 uppercase tracking-wider group-hover:text-cyan-400/80 transition-colors">
                       {stat.label}
                     </div>
                   </GradientBorder>
@@ -287,39 +287,37 @@ export default function Home() {
         </section>
 
         {/* About Preview */}
-        <section className="py-16 relative overflow-hidden">
-          <MorphingBlob color="purple" size="lg" className="absolute -right-48 top-0 opacity-40" />
-          
+        <section className="py-12 relative overflow-hidden">
           <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-cyan-400 text-sm uppercase tracking-widest mb-4 block">
+                <span className="text-cyan-400 text-xs uppercase tracking-widest mb-3 block font-medium">
                   About Me
                 </span>
-                <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-5">
                   Crafting digital{" "}
-                  <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
                     experiences
                   </span>
                 </h2>
-                <p className="text-lg text-white/50 mb-8 leading-relaxed">
+                <p className="text-base text-white/60 mb-6 leading-relaxed">
                   {resumeData.personal.summary.slice(0, 2).join(". ")}.
                 </p>
-                <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {["React 19", "TypeScript", "Next.js", "Performance", "Accessibility"].map((skill) => (
-                    <Badge key={skill} variant="accent" className="px-4 py-2">
+                    <Badge key={skill} variant="accent" className="px-3 py-1.5 text-xs">
                       {skill}
                     </Badge>
                   ))}
                 </div>
                 <Link href="/about">
                   <motion.span
-                    className="inline-flex items-center gap-2 text-cyan-400 font-medium hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-2 text-cyan-400 font-medium hover:text-cyan-300 hover:gap-3 transition-all"
                     whileHover={{ x: 5 }}
                   >
                     Learn more about me
@@ -335,27 +333,27 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="relative"
               >
-                <GradientBorder className="p-8">
-                  <div className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="h-3 w-3 rounded-full bg-red-500" />
-                      <div className="h-3 w-3 rounded-full bg-yellow-500" />
-                      <div className="h-3 w-3 rounded-full bg-green-500" />
+                <GradientBorder className="p-6 hover:border-cyan-400/30 transition-colors">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="h-2.5 w-2.5 rounded-full bg-red-400/80 shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/80 shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-green-400/80 shadow-[0_0_8px_rgba(74,222,128,0.5)]" />
                     </div>
-                    <pre className="font-mono text-sm text-white/70 overflow-x-auto">
+                    <pre className="font-mono text-xs text-white/80 overflow-x-auto">
                       <code>
-                        <span className="text-purple-400">const</span>{" "}
+                        <span className="text-purple-400/90">const</span>{" "}
                         <span className="text-cyan-400">developer</span> = {"{"}
-                        {"\n"}  name: <span className="text-green-400">&quot;Rajasekhar Reddy&quot;</span>,
-                        {"\n"}  role: <span className="text-green-400">&quot;Technical Lead&quot;</span>,
-                        {"\n"}  experience: <span className="text-yellow-400">6.5</span>,
+                        {"\n"}  name: <span className="text-emerald-400">&quot;Rajasekhar Reddy&quot;</span>,
+                        {"\n"}  role: <span className="text-emerald-400">&quot;Technical Lead&quot;</span>,
+                        {"\n"}  experience: <span className="text-yellow-400 font-semibold">6.5</span>,
                         {"\n"}  skills: [
-                        {"\n"}    <span className="text-green-400">&quot;React&quot;</span>,
-                        {"\n"}    <span className="text-green-400">&quot;TypeScript&quot;</span>,
-                        {"\n"}    <span className="text-green-400">&quot;JavaScript&quot;</span>,
-                        {"\n"}    <span className="text-green-400">&quot;Performance Optimization & Scalability&quot;</span>
+                        {"\n"}    <span className="text-emerald-400">&quot;React&quot;</span>,
+                        {"\n"}    <span className="text-emerald-400">&quot;TypeScript&quot;</span>,
+                        {"\n"}    <span className="text-emerald-400">&quot;JavaScript&quot;</span>,
+                        {"\n"}    <span className="text-emerald-400">&quot;Performance Optimization & Scalability&quot;</span>
                         {"\n"}  ],
-                        {"\n"}  passion: <span className="text-green-400">&quot;Building amazing UIs&quot;</span>
+                        {"\n"}  passion: <span className="text-emerald-400">&quot;Building amazing UIs&quot;</span>
                         {"\n"}{"}"};
                       </code>
                     </pre>

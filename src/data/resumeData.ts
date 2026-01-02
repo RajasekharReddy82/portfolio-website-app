@@ -16,6 +16,7 @@ export interface Project {
   highlights?: string[];
   liveUrl?: string;
   featured?: boolean;
+  isPersonal?: boolean;
 }
 
 export interface Experience {
@@ -116,7 +117,7 @@ export const resumeData: ResumeData = {
       slug: "csc-dbs-domainsec",
       client: "CSC Global",
       duration: "Apr 2024 – Present",
-      role: "Technical Lead",
+      role: "Frontend Developer",
       techStack: [
         "React",
         "TypeScript",
@@ -168,8 +169,8 @@ export const resumeData: ResumeData = {
       title: "KAEBOX",
       slug: "kaebox",
       client: "Kaebox",
-      duration: "Jul 2024 – Present",
-      role: "Technical Lead",
+      duration: "Jul 2024 – Jun 2025",
+      role: "Frontend Developer",
       techStack: [
         "React",
         "TypeScript",
@@ -212,7 +213,7 @@ export const resumeData: ResumeData = {
       slug: "client-administration-application",
       client: "Medical Solutions",
       duration: "Dec 2022 – Apr 2024",
-      role: "Technical Lead",
+      role: "Frontend Developer",
       techStack: [
         "React",
         "TypeScript",
@@ -254,7 +255,7 @@ export const resumeData: ResumeData = {
       slug: "client-portal-travel",
       client: "Medical Solutions",
       duration: "Dec 2021 – Apr 2024",
-      role: "Technical Lead",
+      role: "Frontend Developer",
       techStack: [
         "React",
         "TypeScript",
@@ -297,7 +298,7 @@ export const resumeData: ResumeData = {
       slug: "cms-conditional-monitoring-system",
       client: "UGL",
       duration: "Oct 2020 – Dec 2021",
-      role: "Senior Software Analyst",
+      role: "Frontend Developer",
       techStack: ["React", "TypeScript", "Redux", "Redux-Saga", "Fluent UI", "SignalR"],
       description:
         "The CMS project for UGL is a vital system for monitoring train conditions in the South Wales region of Australia. It empowers Help Desk staff with real-time and historical data insights, facilitating informed decision-making regarding train maintenance and operations.",
@@ -331,7 +332,7 @@ export const resumeData: ResumeData = {
       slug: "sleep-country",
       client: "Sleep Country",
       duration: "Oct 2019 – Sep 2020",
-      role: "Senior Software Analyst",
+      role: "Frontend Developer",
       techStack: ["React", "TypeScript", "Redux", "Redux-Saga"],
       description:
         "Sleep Country, a leading mattress retailer, entrusted us with the development of its web application. Contributed to implementing critical features like the Products Listing Page and Product Details Page, enhancing the online shopping experience for customers.",
@@ -363,9 +364,10 @@ export const resumeData: ResumeData = {
       id: "ascent-events",
       title: "Ascent Events",
       slug: "ascent-events",
-      client: "Ascent Events NY (Freelance)",
+      client: "Personal Project",
       duration: "2024",
       role: "Frontend Developer",
+      isPersonal: true,
       techStack: [
         "React 18",
         "TypeScript",
@@ -410,6 +412,61 @@ export const resumeData: ResumeData = {
       ],
       liveUrl: "https://www.ascenteventsny.org/",
       featured: true,
+    },
+    {
+      id: "portfolio-website",
+      title: "Portfolio Website",
+      slug: "portfolio-website",
+      client: "Personal Project",
+      duration: "2024 – Present",
+      role: "Frontend Developer",
+      techStack: [
+        "Next.js 14",
+        "TypeScript",
+        "React 19",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Lucide React",
+        "App Router",
+      ],
+      description:
+        "A premium, animation-rich portfolio website showcasing my work, skills, and experience. Built with Next.js 14 App Router, featuring a glassmorphism design system, smooth animations, and full accessibility support.",
+      problem:
+        "Needed a modern, premium portfolio website to showcase my professional work, skills, and experience with a focus on performance, accessibility, and visual appeal.",
+      approach:
+        "Developed a fully responsive portfolio using Next.js 14 with App Router for optimal performance. Implemented a glassmorphism design system with gradient mesh backgrounds, smooth page transitions with Framer Motion, and comprehensive accessibility features. Centralized all content in a single data file for easy maintenance.",
+      challenges: [
+        "Creating a premium design system with glassmorphism effects",
+        "Implementing smooth animations without performance degradation",
+        "Ensuring full accessibility compliance (WCAG)",
+        "Optimizing for Lighthouse scores (90+)",
+        "Building reusable components with consistent styling",
+      ],
+      results: [
+        "Premium glassmorphism + gradient mesh design system",
+        "Smooth micro-interactions and page transitions",
+        "Fully accessible with keyboard navigation and ARIA labels",
+        "High performance with optimized animations",
+        "SEO-ready with sitemap and meta tags",
+        "Fully responsive across all device sizes",
+      ],
+      learnings: [
+        "Next.js 14 App Router architecture and best practices",
+        "Advanced Framer Motion animation patterns",
+        "Accessibility-first development approach",
+        "Performance optimization techniques",
+        "Design system implementation with Tailwind CSS",
+      ],
+      highlights: [
+        "Glassmorphism design with backdrop blur effects",
+        "Custom cursor with magnetic interactions",
+        "Scroll progress indicator",
+        "Animated gradient backgrounds",
+        "Dynamic project filtering and search",
+        "Resume download functionality",
+      ],
+      featured: true,
+      isPersonal: true,
     },
   ],
   skills: [
