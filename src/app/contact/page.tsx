@@ -255,7 +255,7 @@ export default function Contact() {
                         className="group block"
                       >
                         <motion.div
-                          className={`relative overflow-hidden rounded-2xl border ${colors.border} ${colors.hoverBorder} ${colors.bg} backdrop-blur-sm transition-all duration-500 ${colors.glow}`}
+                          className={`relative overflow-hidden rounded-xl border ${colors.border} ${colors.hoverBorder} ${colors.bg} backdrop-blur-sm transition-all duration-500 ${colors.glow}`}
                           whileHover={{ y: -2, scale: 1.01 }}
                           whileTap={{ scale: 0.98 }}
                         >
@@ -267,10 +267,10 @@ export default function Contact() {
                           {/* Shine effect */}
                           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
 
-                          <div className="relative z-10 flex items-center gap-4 p-4">
+                          <div className="relative z-10 flex items-center gap-3 p-3">
                             {/* Icon container with premium effects */}
                             <motion.div
-                              className={`relative flex h-12 w-12 items-center justify-center rounded-xl border ${colors.iconBorder} ${colors.iconBg} flex-shrink-0 overflow-hidden`}
+                              className={`relative flex h-10 w-10 items-center justify-center rounded-lg border ${colors.iconBorder} ${colors.iconBg} flex-shrink-0 overflow-hidden`}
                               whileHover={{ scale: 1.1, rotate: [0, -5, 5, -5, 0] }}
                               transition={{ duration: 0.5 }}
                             >
@@ -289,16 +289,16 @@ export default function Contact() {
                                 }}
                               />
                               <Icon
-                                className={`relative z-10 h-5 w-5 ${colors.iconColor} transition-transform group-hover:scale-110`}
+                                className={`relative z-10 h-4 w-4 ${colors.iconColor} transition-transform group-hover:scale-110`}
                               />
                             </motion.div>
 
                             {/* Content */}
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-500 transition-all duration-300">
+                              <h3 className="text-sm font-semibold text-white mb-0.5 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-500 transition-all duration-300">
                                 {method.label}
                               </h3>
-                              <p className="text-xs text-white/50 mb-1 leading-tight">
+                              <p className="text-xs text-white/50 mb-0.5 leading-tight">
                                 {method.description}
                               </p>
                               <p className="text-xs font-medium text-white/70 group-hover:text-cyan-400 transition-colors truncate">
@@ -310,7 +310,7 @@ export default function Contact() {
                             {method.href.startsWith("http") && (
                               <motion.div className="flex-shrink-0" whileHover={{ x: 2, y: -2 }}>
                                 <ArrowUpRight
-                                  className={`h-4 w-4 ${colors.iconColor} opacity-60 group-hover:opacity-100 transition-opacity`}
+                                  className={`h-3.5 w-3.5 ${colors.iconColor} opacity-60 group-hover:opacity-100 transition-opacity`}
                                 />
                               </motion.div>
                             )}
@@ -507,7 +507,7 @@ export default function Contact() {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
+                                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
                                 placeholder="John Doe"
                               />
                               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -535,7 +535,7 @@ export default function Contact() {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
+                                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
                                 placeholder="john@example.com"
                               />
                               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -563,7 +563,7 @@ export default function Contact() {
                               name="phone"
                               value={formData.phone}
                               onChange={handleChange}
-                              className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
+                              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
                               placeholder="(555) 123-4567"
                             />
                             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -591,7 +591,7 @@ export default function Contact() {
                               value={formData.subject}
                               onChange={handleChange}
                               required
-                              className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
+                              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 backdrop-blur-sm hover:border-white/20"
                               placeholder="What's this about?"
                             />
                             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -618,8 +618,8 @@ export default function Contact() {
                               value={formData.message}
                               onChange={handleChange}
                               required
-                              rows={8}
-                              className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 resize-none backdrop-blur-sm hover:border-white/20"
+                              rows={5}
+                              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300 resize-none backdrop-blur-sm hover:border-white/20"
                               placeholder="Tell me about your project, ideas, or just say hello..."
                             />
                             <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/0 via-cyan-400/10 to-transparent opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -635,7 +635,7 @@ export default function Contact() {
                           <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="group relative w-full overflow-hidden rounded-xl border border-cyan-400/40 bg-gradient-to-r from-cyan-500/20 via-cyan-400/15 to-cyan-500/20 px-6 py-3.5 font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="group relative w-full overflow-hidden rounded-xl border border-cyan-400/40 bg-gradient-to-r from-cyan-500/20 via-cyan-400/15 to-cyan-500/20 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:border-cyan-400/60 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] disabled:opacity-50 disabled:cursor-not-allowed"
                             whileHover={!isSubmitting ? { scale: 1.01 } : {}}
                             whileTap={!isSubmitting ? { scale: 0.99 } : {}}
                           >
@@ -645,22 +645,22 @@ export default function Contact() {
                             {/* Shine sweep effect */}
                             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
 
-                            <span className="relative z-10 flex items-center justify-center gap-2.5 text-base">
+                            <span className="relative z-10 flex items-center justify-center gap-2 text-sm">
                               {isSubmitting ? (
                                 <>
                                   <motion.div
                                     animate={{ rotate: 360 }}
                                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                                   >
-                                    <div className="h-4 w-4 border-2 border-white/40 border-t-white rounded-full" />
+                                    <div className="h-3.5 w-3.5 border-2 border-white/40 border-t-white rounded-full" />
                                   </motion.div>
                                   Sending...
                                 </>
                               ) : (
                                 <>
-                                  <Send className="h-4 w-4" />
+                                  <Send className="h-3.5 w-3.5" />
                                   Send Message
-                                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                                 </>
                               )}
                             </span>
