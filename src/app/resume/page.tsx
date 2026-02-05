@@ -23,8 +23,8 @@ export default function Resume() {
     <>
       <AnimatedGradient />
       <main id="main-content" className="relative z-10 min-h-screen pt-20">
-            {/* Hero */}
-            <section className="pb-8">
+        {/* Hero */}
+        <section className="pb-8">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -51,10 +51,10 @@ export default function Resume() {
               >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-purple-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                
+
                 {/* Shine effect */}
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-1000" />
-                
+
                 <div className="relative z-10 flex items-center gap-3">
                   <motion.div
                     animate={{ y: [0, -4, 0] }}
@@ -69,8 +69,8 @@ export default function Resume() {
           </div>
         </section>
 
-            {/* Resume Content */}
-            <section className="pb-16">
+        {/* Resume Content */}
+        <section className="pb-16">
           <div className="container mx-auto px-6 space-y-8">
             {/* Personal Info */}
             <motion.div
@@ -129,11 +129,15 @@ export default function Resume() {
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/20">
                     <Briefcase size={20} className="text-cyan-400" />
                   </div>
-                  <h3 className="font-display text-2xl font-bold text-white">Professional Summary</h3>
+                  <h3 className="font-display text-2xl font-bold text-white">
+                    Professional Summary
+                  </h3>
                 </div>
                 <ul className="space-y-2">
                   {resumeData.personal.summary.map((point, index) => (
-                    <li key={index} className="text-white/70">• {point}</li>
+                    <li key={index} className="text-white/70">
+                      • {point}
+                    </li>
                   ))}
                 </ul>
               </GlowCard>
@@ -159,9 +163,7 @@ export default function Resume() {
                       <h4 className="text-xl font-semibold text-white">{exp.role}</h4>
                       <p className="text-cyan-400">{exp.company}</p>
                       <p className="text-sm text-white/50">{exp.duration}</p>
-                      {exp.description && (
-                        <p className="mt-2 text-white/70">{exp.description}</p>
-                      )}
+                      {exp.description && <p className="mt-2 text-white/70">{exp.description}</p>}
                     </div>
                   ))}
                 </div>
@@ -183,7 +185,9 @@ export default function Resume() {
                       <h4 className="mb-3 font-semibold text-white/70">{skillCategory.category}</h4>
                       <div className="flex flex-wrap gap-2">
                         {skillCategory.items.map((item) => (
-                          <Badge key={item} variant="primary">{item}</Badge>
+                          <Badge key={item} variant="primary">
+                            {item}
+                          </Badge>
                         ))}
                       </div>
                     </div>
@@ -211,7 +215,9 @@ export default function Resume() {
                     <div key={index} className="border-l-2 border-green-400/30 pl-4">
                       <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
                       <p className="text-white/70">{edu.institution}</p>
-                      <p className="text-sm text-white/50">{edu.year} • {edu.grade}</p>
+                      <p className="text-sm text-white/50">
+                        {edu.year} • {edu.grade}
+                      </p>
                     </div>
                   ))}
                 </div>

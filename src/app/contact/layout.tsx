@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "Get in touch with D. Rajasekhar Reddy. Let's discuss how I can help bring your ideas to life.",
 };
 
-export default function ContactLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ContactLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

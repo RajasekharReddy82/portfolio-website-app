@@ -21,8 +21,7 @@ export const AnimatedGradient = () => {
   );
 
   useEffect(() => {
-    setIsMounted(true);
-    
+    queueMicrotask(() => setIsMounted(true));
     let rafId: number;
     let lastX = 0;
     let lastY = 0;
@@ -64,7 +63,7 @@ export const AnimatedGradient = () => {
 
       {/* Static gradient - top left */}
       <div className="absolute -left-48 -top-48 h-96 w-96 rounded-full bg-cyan-500/10 blur-[100px]" />
-      
+
       {/* Static gradient - bottom right */}
       <div className="absolute -right-48 -bottom-48 h-96 w-96 rounded-full bg-purple-500/10 blur-[100px]" />
     </div>

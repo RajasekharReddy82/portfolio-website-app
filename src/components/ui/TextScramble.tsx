@@ -67,11 +67,12 @@ export const TextScramble = ({
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.3 }}
     >
-      {displayText || text.split("").map(() => " ").join("")}
-      {!isComplete && isInView && (
-        <span className="animate-pulse text-cyan-400">|</span>
-      )}
+      {displayText ||
+        text
+          .split("")
+          .map(() => " ")
+          .join("")}
+      {!isComplete && isInView && <span className="animate-pulse text-cyan-400">|</span>}
     </motion.span>
   );
 };
-

@@ -45,9 +45,7 @@ export const ProjectCard = ({
               </div>
               <ArrowRight className="h-5 w-5 text-foreground/50 group-hover:text-primary group-hover:translate-x-1 transition-all" />
             </div>
-            {description && (
-              <p className="text-foreground/80 line-clamp-2">{description}</p>
-            )}
+            {description && <p className="text-foreground/80 line-clamp-2">{description}</p>}
             <div className="flex flex-wrap gap-2">
               {techStack.slice(0, 4).map((tech) => (
                 <Badge key={tech} variant="primary">
@@ -64,4 +62,3 @@ export const ProjectCard = ({
     </motion.div>
   );
 };
-

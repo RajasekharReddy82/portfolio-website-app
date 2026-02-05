@@ -496,7 +496,15 @@ export const resumeData: ResumeData = {
   skills: [
     {
       category: "UI Technologies",
-      items: ["HTML5", "CSS3", "SASS", "Styled Components", "Tailwind CSS", "Bootstrap", "Reactstrap"],
+      items: [
+        "HTML5",
+        "CSS3",
+        "SASS",
+        "Styled Components",
+        "Tailwind CSS",
+        "Bootstrap",
+        "Reactstrap",
+      ],
     },
     {
       category: "JavaScript/TypeScript",
@@ -508,7 +516,14 @@ export const resumeData: ResumeData = {
     },
     {
       category: "State Management & Data Fetching",
-      items: ["Redux", "Redux-Saga", "Redux Toolkit", "RTK Query", "TanStack Query", "TanStack Table"],
+      items: [
+        "Redux",
+        "Redux-Saga",
+        "Redux Toolkit",
+        "RTK Query",
+        "TanStack Query",
+        "TanStack Table",
+      ],
     },
     {
       category: "Testing",
@@ -545,7 +560,8 @@ export const resumeData: ResumeData = {
       title: "Meta Front-End Developer",
       issuer: "Meta",
       issueDate: "March 2024",
-      verificationUrl: "https://www.coursera.org/account/accomplishments/specialization/WFK2SPE9RN4J",
+      verificationUrl:
+        "https://www.coursera.org/account/accomplishments/specialization/WFK2SPE9RN4J",
       skills: [
         "React.js",
         "JavaScript",
@@ -559,7 +575,8 @@ export const resumeData: ResumeData = {
         "Data Validation",
         "Software Technical Review",
       ],
-      description: "Professional specialization certificate covering comprehensive front-end development skills including React, UI/UX design, responsive web development, and accessibility standards.",
+      description:
+        "Professional specialization certificate covering comprehensive front-end development skills including React, UI/UX design, responsive web development, and accessibility standards.",
     },
     {
       id: "frontend-capstone",
@@ -575,7 +592,8 @@ export const resumeData: ResumeData = {
         "JavaScript",
         "React JS",
       ],
-      description: "Capstone project demonstrating ability to design and style responsive user interfaces, create React components for multiple views, and build production-ready front-end applications.",
+      description:
+        "Capstone project demonstrating ability to design and style responsive user interfaces, create React components for multiple views, and build production-ready front-end applications.",
     },
   ],
 };

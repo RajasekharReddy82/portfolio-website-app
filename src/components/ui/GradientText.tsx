@@ -33,4 +33,3 @@ export const GradientText = ({ children, className = "", animate = true }: Gradi
     </motion.span>
   );
 };
-

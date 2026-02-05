@@ -62,4 +62,3 @@ export const RevealOnScroll = ({
     </motion.div>
   );
 };
-

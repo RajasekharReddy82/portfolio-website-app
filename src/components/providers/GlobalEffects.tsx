@@ -22,4 +22,3 @@ export const GlobalEffects = ({ children }: GlobalEffectsProps) => {
     </SmoothScrollProvider>
   );
 };
-

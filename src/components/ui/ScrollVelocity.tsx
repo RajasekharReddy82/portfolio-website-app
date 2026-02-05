@@ -15,15 +15,15 @@ export const ScrollVelocity = ({
   className = "",
 }: ScrollVelocityProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
-  
+
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 50,
     stiffness: 400,
   });
-  
+
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
   });
@@ -33,10 +33,7 @@ export const ScrollVelocity = ({
 
   return (
     <div ref={containerRef} className={`overflow-hidden ${className}`}>
-      <motion.div
-        className="flex whitespace-nowrap"
-        style={{ x, skewX }}
-      >
+      <motion.div className="flex whitespace-nowrap" style={{ x, skewX }}>
         {children}
         {children}
         {children}
@@ -44,4 +41,3 @@ export const ScrollVelocity = ({
     </div>
   );
 };
-

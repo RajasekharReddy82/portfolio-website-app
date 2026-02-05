@@ -3,14 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import {
-  ArrowUpRight,
-  Download,
-  Linkedin,
-  Mail,
-  ArrowDown,
-  Sparkles,
-} from "lucide-react";
+import { ArrowUpRight, Download, Linkedin, Mail, ArrowDown, Sparkles } from "lucide-react";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { MorphingBlob } from "@/components/ui/MorphingBlob";
 import { SplitText } from "@/components/ui/SplitText";
@@ -66,16 +59,8 @@ export default function Home() {
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
           {/* Morphing blobs */}
-          <MorphingBlob
-            color="cyan"
-            size="xl"
-            className="-left-64 top-20 opacity-60"
-          />
-          <MorphingBlob
-            color="purple"
-            size="xl"
-            className="-right-64 bottom-20 opacity-60"
-          />
+          <MorphingBlob color="cyan" size="xl" className="-left-64 top-20 opacity-60" />
+          <MorphingBlob color="purple" size="xl" className="-right-64 bottom-20 opacity-60" />
 
           <motion.div
             className="container mx-auto px-6 text-center relative z-10"
@@ -90,9 +75,7 @@ export default function Home() {
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-5 py-2 text-sm text-green-400 backdrop-blur-sm">
                 <Sparkles className="h-4 w-4" />
-                <span className="font-medium">
-                  Available for new opportunities
-                </span>
+                <span className="font-medium">Available for new opportunities</span>
               </span>
             </motion.div>
 
@@ -103,12 +86,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 1.6 }}
             >
               <h1 className="mb-8 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-                <SplitText
-                  text="Rajasekhar"
-                  className="text-white"
-                  delay={1.7}
-                  animation="wave"
-                />{" "}
+                <SplitText text="Rajasekhar" className="text-white" delay={1.7} animation="wave" />{" "}
                 <SplitText
                   text="Reddy"
                   className="bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
@@ -145,8 +123,8 @@ export default function Home() {
               className="mx-auto max-w-2xl text-lg text-white/50 mb-12"
             >
               Building premium, accessible, and performant web experiences with{" "}
-              <span className="text-cyan-400 font-medium">6.5+ years</span> of
-              expertise in modern frontend development.
+              <span className="text-cyan-400 font-medium">6.5+ years</span> of expertise in modern
+              frontend development.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -237,9 +215,7 @@ export default function Home() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="flex flex-col items-center gap-2"
               >
-                <span className="text-xs uppercase tracking-widest">
-                  Scroll
-                </span>
+                <span className="text-xs uppercase tracking-widest">Scroll</span>
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
               </motion.div>
             </motion.button>
@@ -247,10 +223,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack Marquee */}
-        <section
-          className="py-4 border-y border-white/5"
-          aria-label="Technologies used"
-        >
+        <section className="py-4 border-y border-white/5" aria-label="Technologies used">
           <Marquee items={siteConfig.techStack} speed={40} />
         </section>
 
@@ -309,21 +282,13 @@ export default function Home() {
                   {resumeData.personal.summary.slice(0, 2).join(". ")}.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {[
-                    "React 19",
-                    "TypeScript",
-                    "Next.js",
-                    "Performance",
-                    "Accessibility",
-                  ].map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="accent"
-                      className="px-3 py-1.5 text-xs"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
+                  {["React 19", "TypeScript", "Next.js", "Performance", "Accessibility"].map(
+                    (skill) => (
+                      <Badge key={skill} variant="accent" className="px-3 py-1.5 text-xs">
+                        {skill}
+                      </Badge>
+                    )
+                  )}
                 </div>
                 <Link href="/about">
                   <motion.span
@@ -355,46 +320,22 @@ export default function Home() {
                         <span className="text-purple-400/90">const</span>{" "}
                         <span className="text-cyan-400">developer</span> = {"{"}
                         {"\n"} name:{" "}
-                        <span className="text-emerald-400">
-                          &quot;Rajasekhar Reddy&quot;
-                        </span>
-                        ,{"\n"} role:{" "}
-                        <span className="text-emerald-400">
-                          &quot;Technical Lead&quot;
-                        </span>
-                        ,{"\n"} experience:{" "}
-                        <span className="text-yellow-400 font-semibold">
-                          6.5
-                        </span>
-                        ,{"\n"} skills: [{"\n"}{" "}
-                        <span className="text-emerald-400">
-                          &quot;React&quot;
-                        </span>
-                        ,{"\n"}{" "}
-                        <span className="text-emerald-400">
-                          &quot;Next Js&quot;
-                        </span>
-                        ,{"\n"}{" "}
-                        <span className="text-emerald-400">
-                          &quot;TypeScript&quot;
-                        </span>
-                        ,{"\n"}{" "}
-                        <span className="text-emerald-400">
-                          &quot;JavaScript&quot;
-                        </span>
-                        ,{"\n"}{" "}
+                        <span className="text-emerald-400">&quot;Rajasekhar Reddy&quot;</span>,
+                        {"\n"} role:{" "}
+                        <span className="text-emerald-400">&quot;Technical Lead&quot;</span>,{"\n"}{" "}
+                        experience: <span className="text-yellow-400 font-semibold">6.5</span>,
+                        {"\n"} skills: [{"\n"}{" "}
+                        <span className="text-emerald-400">&quot;React&quot;</span>,{"\n"}{" "}
+                        <span className="text-emerald-400">&quot;Next Js&quot;</span>,{"\n"}{" "}
+                        <span className="text-emerald-400">&quot;TypeScript&quot;</span>,{"\n"}{" "}
+                        <span className="text-emerald-400">&quot;JavaScript&quot;</span>,{"\n"}{" "}
                         <span className="text-emerald-400">
                           &quot;Performance Optimization & Scalability&quot;
                         </span>
-                        {"\n"}{" "}
-                        <span className="text-emerald-400">
-                          &quot;Accessibility&quot;
-                        </span>
+                        {"\n"} <span className="text-emerald-400">&quot;Accessibility&quot;</span>
                         {"\n"} ],
                         {"\n"} passion:{" "}
-                        <span className="text-emerald-400">
-                          &quot;Building amazing UIs&quot;
-                        </span>
+                        <span className="text-emerald-400">&quot;Building amazing UIs&quot;</span>
                         {"\n"}
                         {"}"};
                       </code>
@@ -439,11 +380,7 @@ export default function Home() {
 
           <HorizontalScroll>
             {featuredProjects.map((project, i) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.slug}`}
-                className="flex-shrink-0"
-              >
+              <Link key={project.id} href={`/projects/${project.slug}`} className="flex-shrink-0">
                 <TiltCard>
                   <motion.div
                     className="group relative h-[450px] w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8"
@@ -475,11 +412,7 @@ export default function Home() {
                       <div>
                         <div className="mb-6 flex flex-wrap gap-2">
                           {project.techStack.slice(0, 3).map((tech) => (
-                            <Badge
-                              key={tech}
-                              variant="primary"
-                              className="text-xs"
-                            >
+                            <Badge key={tech} variant="primary" className="text-xs">
                               {tech}
                             </Badge>
                           ))}
@@ -517,9 +450,7 @@ export default function Home() {
                   >
                     →
                   </motion.div>
-                  <div className="text-sm font-medium text-white/60">
-                    View all projects
-                  </div>
+                  <div className="text-sm font-medium text-white/60">View all projects</div>
                 </div>
               </motion.div>
             </Link>
@@ -533,11 +464,7 @@ export default function Home() {
             size="xl"
             className="absolute -left-64 top-1/2 -translate-y-1/2 opacity-40"
           />
-          <MorphingBlob
-            color="purple"
-            size="lg"
-            className="absolute -right-32 top-0 opacity-30"
-          />
+          <MorphingBlob color="purple" size="lg" className="absolute -right-32 top-0 opacity-30" />
 
           <div className="container mx-auto px-6 text-center relative z-10">
             <motion.div
@@ -553,8 +480,7 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-base md:text-lg text-white/50 mb-8 max-w-xl mx-auto">
-                Ready to build something exceptional? Let&apos;s discuss your
-                next project.
+                Ready to build something exceptional? Let&apos;s discuss your next project.
               </p>
               <Link href="/contact">
                 <motion.button

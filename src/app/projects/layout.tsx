@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "Showcasing premium React applications with modern architecture, performance optimization, and accessibility best practices.",
 };
 
-export default function ProjectsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ProjectsLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

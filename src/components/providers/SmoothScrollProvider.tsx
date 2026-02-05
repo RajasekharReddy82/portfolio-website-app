@@ -13,7 +13,7 @@ export const SmoothScrollProvider = ({ children }: SmoothScrollProviderProps) =>
   useEffect(() => {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    
+
     if (prefersReducedMotion) return;
 
     lenisRef.current = new Lenis({
@@ -39,4 +39,3 @@ export const SmoothScrollProvider = ({ children }: SmoothScrollProviderProps) =>
 
   return <>{children}</>;
 };
-

@@ -70,4 +70,3 @@ export const LetterReveal = ({ children, className = "", delay = 0 }: LetterReve
     </span>
   );
 };
-

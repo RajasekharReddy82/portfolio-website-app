@@ -107,9 +107,7 @@ export const Footer = () => {
           <p className="text-sm text-white/40">
             © {currentYear} {resumeData.personal.name}. All rights reserved.
           </p>
-          <p className="text-sm text-white/40">
-            Built with Next.js, Framer Motion & ♥
-          </p>
+          <p className="text-sm text-white/40">Built with Next.js, Framer Motion & ♥</p>
         </motion.div>
       </div>
     </footer>

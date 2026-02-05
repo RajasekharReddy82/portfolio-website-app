@@ -63,4 +63,3 @@ export const AnimatedCounter = ({ value, suffix = "", className = "" }: Animated
     </motion.span>
   );
 };
-

@@ -47,9 +47,8 @@ export const SplitText = ({
       {words.map((word, wordIndex) => (
         <span key={wordIndex} className="inline-block whitespace-nowrap">
           {word.split("").map((char, charIndex) => {
-            const index = words
-              .slice(0, wordIndex)
-              .reduce((acc, w) => acc + w.length, 0) + charIndex;
+            const index =
+              words.slice(0, wordIndex).reduce((acc, w) => acc + w.length, 0) + charIndex;
 
             return (
               <motion.span
@@ -69,12 +68,9 @@ export const SplitText = ({
               </motion.span>
             );
           })}
-          {wordIndex < words.length - 1 && (
-            <span className="inline-block">&nbsp;</span>
-          )}
+          {wordIndex < words.length - 1 && <span className="inline-block">&nbsp;</span>}
         </span>
       ))}
     </span>
   );
 };
-

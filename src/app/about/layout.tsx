@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "Technical Lead with 6.5+ years of expertise in React and TypeScript. Learn more about my background, skills, and professional journey.",
 };
 
-export default function AboutLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AboutLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

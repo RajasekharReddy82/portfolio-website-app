@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
@@ -58,4 +58,3 @@ export const MagneticButton = ({
     </motion.button>
   );
 };
-

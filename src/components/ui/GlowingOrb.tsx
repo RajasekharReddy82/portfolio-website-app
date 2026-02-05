@@ -20,11 +20,7 @@ const sizes = {
   lg: "h-96 w-96",
 };
 
-export const GlowingOrb = ({
-  color = "cyan",
-  size = "md",
-  className = "",
-}: GlowingOrbProps) => {
+export const GlowingOrb = ({ color = "cyan", size = "md", className = "" }: GlowingOrbProps) => {
   return (
     <motion.div
       className={`absolute rounded-full bg-gradient-radial ${colors[color]} ${sizes[size]} blur-3xl ${className}`}
@@ -41,4 +37,3 @@ export const GlowingOrb = ({
     />
   );
 };
-

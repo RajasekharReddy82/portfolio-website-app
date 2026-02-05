@@ -57,4 +57,3 @@ export const TiltCard = ({ children, className = "" }: TiltCardProps) => {
     </motion.div>
   );
 };
-

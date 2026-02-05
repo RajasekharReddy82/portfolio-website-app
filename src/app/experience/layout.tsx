@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "6.5+ years of progressive experience in frontend development and technical leadership at Evoke Technologies and GetOnGrey.",
 };
 
-export default function ExperienceLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ExperienceLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

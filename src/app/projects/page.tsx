@@ -28,9 +28,7 @@ export default function Projects() {
       const matchesSearch =
         searchQuery === "" ||
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.techStack.some((tech) =>
-          tech.toLowerCase().includes(searchQuery.toLowerCase())
-        );
+        project.techStack.some((tech) => tech.toLowerCase().includes(searchQuery.toLowerCase()));
       const matchesTech = selectedTech === null || project.techStack.includes(selectedTech);
       return matchesSearch && matchesTech;
     });
@@ -52,8 +50,8 @@ export default function Projects() {
         <GlowingOrb color="cyan" size="lg" className="fixed top-20 -left-32 opacity-50" />
         <GlowingOrb color="purple" size="md" className="fixed bottom-20 -right-32 opacity-50" />
 
-            {/* Hero */}
-            <section className="pb-12">
+        {/* Hero */}
+        <section className="pb-12">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -75,8 +73,8 @@ export default function Projects() {
           </div>
         </section>
 
-            {/* Filters */}
-            <section className="pb-8">
+        {/* Filters */}
+        <section className="pb-8">
           <div className="container mx-auto px-6">
             {/* Search */}
             <motion.div
@@ -143,8 +141,8 @@ export default function Projects() {
           </div>
         </section>
 
-            {/* Projects Grid */}
-            <section className="pb-16">
+        {/* Projects Grid */}
+        <section className="pb-16">
           <div className="container mx-auto px-6 space-y-16">
             <AnimatePresence mode="wait">
               {filteredProjects.length > 0 ? (
@@ -185,7 +183,9 @@ export default function Projects() {
                                   <div className="relative z-10">
                                     <div className="flex items-start justify-between gap-4 mb-4">
                                       <div>
-                                        <div className="text-sm text-cyan-400 mb-2">{project.duration}</div>
+                                        <div className="text-sm text-cyan-400 mb-2">
+                                          {project.duration}
+                                        </div>
                                         <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
                                           {project.title}
                                         </h3>
@@ -194,7 +194,9 @@ export default function Projects() {
                                       <ArrowUpRight className="h-6 w-6 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                                     </div>
 
-                                    <p className="text-white/50 line-clamp-2 mb-6">{project.problem}</p>
+                                    <p className="text-white/50 line-clamp-2 mb-6">
+                                      {project.problem}
+                                    </p>
 
                                     <div className="flex flex-wrap gap-2">
                                       {project.techStack.slice(0, 4).map((tech) => (
@@ -254,7 +256,9 @@ export default function Projects() {
                                   <div className="relative z-10">
                                     <div className="flex items-start justify-between gap-4 mb-4">
                                       <div>
-                                        <div className="text-sm text-cyan-400 mb-2">{project.duration}</div>
+                                        <div className="text-sm text-cyan-400 mb-2">
+                                          {project.duration}
+                                        </div>
                                         <h3 className="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">
                                           {project.title}
                                         </h3>
@@ -263,7 +267,9 @@ export default function Projects() {
                                       <ArrowUpRight className="h-6 w-6 text-white/20 group-hover:text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                                     </div>
 
-                                    <p className="text-white/50 line-clamp-2 mb-6">{project.problem}</p>
+                                    <p className="text-white/50 line-clamp-2 mb-6">
+                                      {project.problem}
+                                    </p>
 
                                     <div className="flex flex-wrap gap-2">
                                       {project.techStack.slice(0, 4).map((tech) => (

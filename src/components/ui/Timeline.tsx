@@ -42,14 +42,10 @@ export const Timeline = ({ items, className }: TimelineProps) => {
                 <Card hover={false} className="border-primary/30">
                   <div className="mb-2">
                     <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                    {item.subtitle && (
-                      <p className="text-sm text-foreground/70">{item.subtitle}</p>
-                    )}
+                    {item.subtitle && <p className="text-sm text-foreground/70">{item.subtitle}</p>}
                     <p className="mt-1 text-sm font-medium text-primary">{item.duration}</p>
                   </div>
-                  {item.description && (
-                    <p className="text-foreground/80">{item.description}</p>
-                  )}
+                  {item.description && <p className="text-foreground/80">{item.description}</p>}
                 </Card>
               </div>
             </div>
@@ -59,4 +55,3 @@ export const Timeline = ({ items, className }: TimelineProps) => {
     </div>
   );
 };
-

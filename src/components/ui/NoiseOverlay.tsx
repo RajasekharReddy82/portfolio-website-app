@@ -14,4 +14,3 @@ export const NoiseOverlay = memo(function NoiseOverlay() {
     />
   );
 });
-

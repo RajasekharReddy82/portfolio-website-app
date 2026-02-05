@@ -8,9 +8,7 @@ export default function NotFound() {
     <main id="main-content" className="min-h-screen pt-20">
       <Container>
         <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
-          <h1 className="mb-4 font-display text-6xl font-bold text-foreground md:text-8xl">
-            404
-          </h1>
+          <h1 className="mb-4 font-display text-6xl font-bold text-foreground md:text-8xl">404</h1>
           <p className="mb-8 text-xl text-foreground/70">
             The page you&apos;re looking for doesn&apos;t exist.
           </p>
@@ -25,4 +23,3 @@ export default function NotFound() {
     </main>
   );
 }
-

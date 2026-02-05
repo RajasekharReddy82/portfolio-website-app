@@ -308,11 +308,8 @@ function escapeHtml(text: string): string {
 }
 
 // Email sending logic
-async function sendEmail(
-  data: ContactFormData,
-): Promise<{ success: boolean; error?: string }> {
-  const recipientEmail =
-    process.env.RESEND_RECIPIENT_EMAIL || "rajasekharreddy82979@gmail.com";
+async function sendEmail(data: ContactFormData): Promise<{ success: boolean; error?: string }> {
+  const recipientEmail = process.env.RESEND_RECIPIENT_EMAIL || "rajasekharreddy82979@gmail.com";
   const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
   try {
@@ -353,21 +350,15 @@ export async function POST(request: NextRequest) {
     const result = await sendEmail(formData as ContactFormData);
 
     if (!result.success) {
-      return NextResponse.json(
-        { error: result.error || "Failed to send email" },
-        { status: 500 },
-      );
+      return NextResponse.json({ error: result.error || "Failed to send email" }, { status: 500 });
     }
 
     return NextResponse.json(
       { success: true, message: "Email sent successfully" },
-      { status: 200 },
+      { status: 200 }
     );
   } catch (error) {
     console.error("Request processing error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

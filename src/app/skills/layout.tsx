@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "Comprehensive expertise across modern frontend technologies including React, TypeScript, Redux, TanStack Query, and more.",
 };
 
-export default function SkillsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function SkillsLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

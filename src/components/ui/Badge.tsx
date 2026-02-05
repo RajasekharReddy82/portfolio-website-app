@@ -8,12 +8,12 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   animated?: boolean;
 }
 
-export const Badge = ({ 
-  className, 
-  variant = "default", 
+export const Badge = ({
+  className,
+  variant = "default",
   animated = false,
-  children, 
-  ...props 
+  children,
+  ...props
 }: BadgeProps) => {
   const variants = {
     default: "bg-white/5 border-white/10 text-white/70",

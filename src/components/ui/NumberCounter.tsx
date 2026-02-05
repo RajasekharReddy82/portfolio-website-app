@@ -37,7 +37,7 @@ export const NumberCounter = ({
   useEffect(() => {
     if (isInView && !hasAnimated) {
       spring.set(value);
-      setHasAnimated(true);
+      queueMicrotask(() => setHasAnimated(true));
     }
   }, [isInView, value, spring, hasAnimated]);
 
@@ -49,7 +49,7 @@ export const NumberCounter = ({
   }, [display]);
 
   const hasGradient = className.includes("bg-gradient") || className.includes("bg-clip-text");
-  
+
   return (
     <motion.span
       ref={ref}
@@ -64,4 +64,3 @@ export const NumberCounter = ({
     </motion.span>
   );
 };
-

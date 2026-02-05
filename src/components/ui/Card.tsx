@@ -4,7 +4,10 @@ import { motion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/utils/cn";
 import { forwardRef } from "react";
 
-interface CardProps extends Omit<HTMLMotionProps<"div">, "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration" | "children"> {
+interface CardProps extends Omit<
+  HTMLMotionProps<"div">,
+  "onAnimationStart" | "onAnimationEnd" | "onAnimationIteration" | "children"
+> {
   hover?: boolean;
   glow?: boolean;
   children: React.ReactNode;
@@ -33,4 +36,3 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 );
 
 Card.displayName = "Card";
-

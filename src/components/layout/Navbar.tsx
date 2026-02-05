@@ -28,7 +28,7 @@ export const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
+    queueMicrotask(() => setIsOpen(false));
   }, [pathname]);
 
   useEffect(() => {
@@ -47,9 +47,7 @@ export const Navbar = () => {
       <motion.nav
         className={cn(
           "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
-          scrolled
-            ? "bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5"
-            : "bg-transparent"
+          scrolled ? "bg-[#0a0a0f]/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"
         )}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

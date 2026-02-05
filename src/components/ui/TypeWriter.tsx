@@ -54,7 +54,16 @@ export const TypeWriter = ({
     );
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, textIndex, texts, typingSpeed, deletingSpeed, pauseDuration, isInView]);
+  }, [
+    displayText,
+    isDeleting,
+    textIndex,
+    texts,
+    typingSpeed,
+    deletingSpeed,
+    pauseDuration,
+    isInView,
+  ]);
 
   return (
     <span ref={ref} className={className}>
@@ -67,4 +76,3 @@ export const TypeWriter = ({
     </span>
   );
 };
-

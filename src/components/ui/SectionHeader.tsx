@@ -27,4 +27,3 @@ export const SectionHeader = ({ title, subtitle, className }: SectionHeaderProps
     </motion.div>
   );
 };
-

@@ -23,18 +23,20 @@ A premium, animation-rich portfolio website built with Next.js, TypeScript, Tail
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm, yarn, or pnpm
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd portfolio-website
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -44,6 +46,7 @@ pnpm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 # or
@@ -79,6 +82,7 @@ pnpm start
 ### Deploy
 
 The site can be deployed to:
+
 - **Vercel** (recommended): Connect your repository to Vercel for automatic deployments
 - **Netlify**: Use the Next.js build command
 - **Any Node.js hosting**: Build and start the production server
@@ -117,6 +121,7 @@ Content and links are centralized in two places:
 ## Design System
 
 The design uses CSS variables defined in `src/app/globals.css`:
+
 - `--background`: Dark background color (#0b0f19)
 - `--foreground`: Text color
 - `--primary`: Primary accent (blue)

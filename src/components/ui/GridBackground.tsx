@@ -16,7 +16,7 @@ export const GridBackground = memo(function GridBackground() {
           backgroundSize: "64px 64px",
         }}
       />
-      
+
       {/* Radial gradient overlay for depth */}
       <div
         className="absolute inset-0"
@@ -27,15 +27,15 @@ export const GridBackground = memo(function GridBackground() {
           `,
         }}
       />
-      
+
       {/* Vignette */}
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 15, 0.4) 100%)",
+          background:
+            "radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 15, 0.4) 100%)",
         }}
       />
     </div>
   );
 });
-

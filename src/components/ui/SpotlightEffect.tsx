@@ -8,7 +8,7 @@ export const SpotlightEffect = () => {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!spotlightRef.current) return;
-      
+
       spotlightRef.current.style.setProperty("--x", `${e.clientX}px`);
       spotlightRef.current.style.setProperty("--y", `${e.clientY}px`);
     };
@@ -28,4 +28,3 @@ export const SpotlightEffect = () => {
     />
   );
 };
-

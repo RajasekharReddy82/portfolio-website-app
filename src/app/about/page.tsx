@@ -2,7 +2,18 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { MapPin, Mail, Phone, Linkedin, CheckCircle, Award, ExternalLink, Calendar, Building2, Briefcase } from "lucide-react";
+import {
+  MapPin,
+  Mail,
+  Phone,
+  Linkedin,
+  CheckCircle,
+  Award,
+  ExternalLink,
+  Calendar,
+  Building2,
+  Briefcase,
+} from "lucide-react";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
@@ -42,8 +53,8 @@ export default function About() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-lg text-white/50 max-w-xl"
                 >
-                  A passionate Technical Lead with 6.5+ years of experience crafting 
-                  scalable, accessible, and high-performance web applications.
+                  A passionate Technical Lead with 6.5+ years of experience crafting scalable,
+                  accessible, and high-performance web applications.
                 </motion.p>
               </motion.div>
 
@@ -57,7 +68,7 @@ export default function About() {
                 <div className="relative">
                   {/* Gradient ring */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-500 rounded-full blur-sm opacity-75 animate-pulse" />
-                  
+
                   {/* Image container */}
                   <div className="relative h-64 w-64 md:h-80 md:w-80 rounded-full overflow-hidden border-4 border-[#0a0a0f]">
                     <Image
@@ -158,9 +169,7 @@ export default function About() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   <GlowCard>
-                    <h3 className="mb-6 font-display text-2xl font-bold text-white">
-                      Education
-                    </h3>
+                    <h3 className="mb-6 font-display text-2xl font-bold text-white">Education</h3>
                     <div className="space-y-4">
                       {resumeData.education.map((edu, index) => (
                         <motion.div
@@ -279,12 +288,13 @@ export default function About() {
                 const categoryColors: Record<string, string> = {
                   "UI Technologies": "from-cyan-400 to-cyan-600",
                   "JavaScript/TypeScript": "from-yellow-400 to-yellow-600",
-                  "Frameworks": "from-blue-400 to-blue-600",
+                  Frameworks: "from-blue-400 to-blue-600",
                   "State Management & Data Fetching": "from-purple-400 to-purple-600",
-                  "Testing": "from-green-400 to-green-600",
+                  Testing: "from-green-400 to-green-600",
                   "Tools & Platforms": "from-orange-400 to-orange-600",
                 };
-                const gradientColor = categoryColors[skillCategory.category] || "from-gray-400 to-gray-600";
+                const gradientColor =
+                  categoryColors[skillCategory.category] || "from-gray-400 to-gray-600";
                 return (
                   <motion.div
                     key={skillCategory.category}
@@ -362,7 +372,9 @@ export default function About() {
                       }`}
                     >
                       {/* Content */}
-                      <div className={`flex-1 pl-20 md:pl-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}>
+                      <div
+                        className={`flex-1 pl-20 md:pl-0 ${index % 2 === 0 ? "md:pr-16 md:text-right" : "md:pl-16"}`}
+                      >
                         <GlowCard>
                           <div className="flex items-center gap-3 mb-4">
                             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400/20">
@@ -387,9 +399,7 @@ export default function About() {
                             )}
                           </div>
 
-                          {exp.description && (
-                            <p className="text-white/70">{exp.description}</p>
-                          )}
+                          {exp.description && <p className="text-white/70">{exp.description}</p>}
                         </GlowCard>
                       </div>
 

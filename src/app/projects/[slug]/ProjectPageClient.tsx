@@ -2,7 +2,19 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Calendar, Target, Lightbulb, Zap, CheckCircle, BookOpen, Trophy, ExternalLink, FileCheck, BarChart3 } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  Target,
+  Lightbulb,
+  Zap,
+  CheckCircle,
+  BookOpen,
+  Trophy,
+  ExternalLink,
+  FileCheck,
+  BarChart3,
+} from "lucide-react";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
@@ -18,27 +30,27 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
     <>
       <AnimatedGradient />
       <main id="main-content" className="relative z-10 min-h-screen pt-20">
-            {/* Back button */}
-            <section className="pb-6">
+        {/* Back button */}
+        <section className="pb-6">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-            <Link
-              href="/projects"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/30 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden />
-              <span>Back to projects</span>
-            </Link>
+              <Link
+                href="/projects"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/70 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/30 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden />
+                <span>Back to projects</span>
+              </Link>
             </motion.div>
           </div>
         </section>
 
-            {/* Hero */}
-            <section className="pb-12">
+        {/* Hero */}
+        <section className="pb-12">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -61,9 +73,7 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
               </h1>
 
               {project.description && (
-                <p className="text-lg text-white/50 max-w-3xl mb-8">
-                  {project.description}
-                </p>
+                <p className="text-lg text-white/50 max-w-3xl mb-8">{project.description}</p>
               )}
 
               <div className="flex flex-wrap gap-2 mb-6">
@@ -229,7 +239,11 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
                 <ul className="space-y-3">
                   {project.results.map((result, index) => (
                     <li key={index} className="flex items-start gap-3 text-white/70">
-                      <CheckCircle size={18} className="mt-0.5 text-green-400 flex-shrink-0" aria-hidden />
+                      <CheckCircle
+                        size={18}
+                        className="mt-0.5 text-green-400 flex-shrink-0"
+                        aria-hidden
+                      />
                       <span>{result}</span>
                     </li>
                   ))}
@@ -269,57 +283,62 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
             )}
 
             {/* Proof – verifiable items: sitemap, a11y checks, Lighthouse note */}
-            {project.proof && (project.proof.sitemapLink || project.proof.a11yChecks?.length || project.proof.lighthouseNote) && (
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <GlowCard className="border-cyan-400/20 bg-cyan-400/5">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/20">
-                      <FileCheck size={24} className="text-cyan-400" aria-hidden />
+            {project.proof &&
+              (project.proof.sitemapLink ||
+                project.proof.a11yChecks?.length ||
+                project.proof.lighthouseNote) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <GlowCard className="border-cyan-400/20 bg-cyan-400/5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-400/20">
+                        <FileCheck size={24} className="text-cyan-400" aria-hidden />
+                      </div>
+                      <div className="flex-1">
+                        <h2 className="mb-4 font-display text-2xl font-bold text-white">
+                          Proof &amp; verification
+                        </h2>
+                        <ul className="space-y-2 text-white/70">
+                          {project.proof.lighthouseNote && (
+                            <li className="flex items-start gap-2">
+                              <span className="text-cyan-400 font-medium">Performance:</span>
+                              <span>{project.proof.lighthouseNote}</span>
+                            </li>
+                          )}
+                          {project.proof.sitemapLink && (
+                            <li>
+                              <span className="text-cyan-400 font-medium">SEO:</span>{" "}
+                              <a
+                                href={project.proof.sitemapLink}
+                                className="underline hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
+                              >
+                                Sitemap
+                              </a>{" "}
+                              ({project.proof.sitemapLink})
+                            </li>
+                          )}
+                          {project.proof.a11yChecks && project.proof.a11yChecks.length > 0 && (
+                            <li>
+                              <span className="text-cyan-400 font-medium">
+                                Accessibility checks:
+                              </span>
+                              <ul className="mt-2 list-disc list-inside space-y-1 text-white/60">
+                                {project.proof.a11yChecks.map((check, i) => (
+                                  <li key={i}>{check}</li>
+                                ))}
+                              </ul>
+                            </li>
+                          )}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h2 className="mb-4 font-display text-2xl font-bold text-white">
-                        Proof &amp; verification
-                      </h2>
-                      <ul className="space-y-2 text-white/70">
-                        {project.proof.lighthouseNote && (
-                          <li className="flex items-start gap-2">
-                            <span className="text-cyan-400 font-medium">Performance:</span>
-                            <span>{project.proof.lighthouseNote}</span>
-                          </li>
-                        )}
-                        {project.proof.sitemapLink && (
-                          <li>
-                            <span className="text-cyan-400 font-medium">SEO:</span>{" "}
-                            <a
-                              href={project.proof.sitemapLink}
-                              className="underline hover:text-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 rounded"
-                            >
-                              Sitemap
-                            </a>
-                            {" "}({project.proof.sitemapLink})
-                          </li>
-                        )}
-                        {project.proof.a11yChecks && project.proof.a11yChecks.length > 0 && (
-                          <li>
-                            <span className="text-cyan-400 font-medium">Accessibility checks:</span>
-                            <ul className="mt-2 list-disc list-inside space-y-1 text-white/60">
-                              {project.proof.a11yChecks.map((check, i) => (
-                                <li key={i}>{check}</li>
-                              ))}
-                            </ul>
-                          </li>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </GlowCard>
-              </motion.div>
-            )}
+                  </GlowCard>
+                </motion.div>
+              )}
 
             {/* Learnings */}
             <motion.div
@@ -353,4 +372,3 @@ export const ProjectPageClient = ({ project }: ProjectPageClientProps) => {
     </>
   );
 };
-

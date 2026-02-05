@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
+const PARTICLE_COLORS = ["#06b6d4", "#8b5cf6", "#ffffff"];
+
 interface Particle {
   x: number;
   y: number;
@@ -18,8 +20,6 @@ export const ParticleField = () => {
   const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>(0);
 
-  const colors = ["#06b6d4", "#8b5cf6", "#ffffff"];
-
   const createParticles = useCallback((width: number, height: number) => {
     const particles: Particle[] = [];
     const count = Math.floor((width * height) / 15000);
@@ -32,7 +32,7 @@ export const ParticleField = () => {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 2 + 0.5,
         opacity: Math.random() * 0.5 + 0.1,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)],
       });
     }
     return particles;
@@ -134,11 +134,6 @@ export const ParticleField = () => {
   }, [createParticles]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
-      aria-hidden="true"
-    />
+    <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
   );
 };
-

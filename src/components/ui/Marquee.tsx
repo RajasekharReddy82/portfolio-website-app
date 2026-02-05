@@ -19,18 +19,16 @@ export const Marquee = ({
   speed = 30,
   reverse = false,
 }: MarqueeProps) => {
-  const content = items ? (
-    items.map((item, i) => (
-      <span
-        key={`${item}-${i}`}
-        className="mx-8 text-lg font-medium text-white/20 hover:text-cyan-400 transition-colors cursor-default"
-      >
-        {item}
-      </span>
-    ))
-  ) : (
-    children
-  );
+  const content = items
+    ? items.map((item, i) => (
+        <span
+          key={`${item}-${i}`}
+          className="mx-8 text-lg font-medium text-white/20 hover:text-cyan-400 transition-colors cursor-default"
+        >
+          {item}
+        </span>
+      ))
+    : children;
 
   return (
     <div className={cn("overflow-hidden", className)}>

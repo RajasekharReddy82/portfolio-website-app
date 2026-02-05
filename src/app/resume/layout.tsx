@@ -6,11 +6,6 @@ export const metadata: Metadata = {
     "Download or view the resume of D. Rajasekhar Reddy, Technical Lead with 6.5+ years of React and TypeScript expertise.",
 };
 
-export default function ResumeLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ResumeLayout({ children }: { children: React.ReactNode }) {
   return children;
 }
-

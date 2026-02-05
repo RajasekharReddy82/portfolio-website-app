@@ -15,7 +15,7 @@ export const ParallaxSection = ({
   speed = 0.2,
 }: ParallaxSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -29,4 +29,3 @@ export const ParallaxSection = ({
     </motion.div>
   );
 };
-
