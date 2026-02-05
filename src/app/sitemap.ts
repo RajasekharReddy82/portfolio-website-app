@@ -1,18 +1,18 @@
 import { MetadataRoute } from "next";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rajasekharreddy.dev";
-
-  const routes = [
-    "",
-    "/about",
-    "/projects",
-    "/resume",
-    "/contact",
+  const baseUrl = siteConfig.baseUrl;
+  const staticRoutes: Array<{ path: string; priority: number }> = [
+    { path: "/", priority: 1 },
+    { path: "/about", priority: 0.8 },
+    { path: "/projects", priority: 0.8 },
+    { path: "/resume", priority: 0.8 },
+    { path: "/contact", priority: 0.8 },
   ];
 
-  const projectRoutes = resumeData.projects.map((project) => ({
+  const projectRoutes: MetadataRoute.Sitemap = resumeData.projects.map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
@@ -20,19 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    ...routes.map((route) => ({
-      url: `${baseUrl}${route}`,
+    ...staticRoutes.map(({ path, priority }) => ({
+      url: path === "/" ? baseUrl : `${baseUrl}${path}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: route === "" ? 1 : 0.8,
+      priority,
     })),
     ...projectRoutes,
   ];
 }
-

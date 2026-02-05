@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { GlobalEffects } from "@/components/providers/GlobalEffects";
+import { AppShell } from "@/components/layout/AppShell";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -16,9 +18,12 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "D. Rajasekhar Reddy | Technical Lead | React + TypeScript",
-  description:
-    "Technical Lead with 6.5+ years of expertise in React and TypeScript. Specialist in accessibility, performance optimization, and modern frontend architecture.",
+  metadataBase: new URL(siteConfig.baseUrl),
+  title: {
+    default: `${siteConfig.metadata.name} | ${siteConfig.metadata.role}`,
+    template: `%s | ${siteConfig.metadata.name}`,
+  },
+  description: siteConfig.metadata.description,
   keywords: [
     "React",
     "TypeScript",
@@ -27,21 +32,19 @@ export const metadata: Metadata = {
     "Accessibility",
     "Performance Optimization",
   ],
-  authors: [{ name: "D. Rajasekhar Reddy" }],
+  authors: [{ name: siteConfig.metadata.name }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://rajasekharreddy.dev",
-    title: "D. Rajasekhar Reddy | Technical Lead | React + TypeScript",
-    description:
-      "Technical Lead with 6.5+ years of expertise in React and TypeScript. Specialist in accessibility, performance optimization, and modern frontend architecture.",
+    url: siteConfig.baseUrl,
+    title: siteConfig.metadata.name,
+    description: siteConfig.metadata.description,
     siteName: "Rajasekhar Reddy Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "D. Rajasekhar Reddy | Technical Lead | React + TypeScript",
-    description:
-      "Technical Lead with 6.5+ years of expertise in React and TypeScript. Specialist in accessibility, performance optimization, and modern frontend architecture.",
+    title: siteConfig.metadata.name,
+    description: siteConfig.metadata.description,
   },
   robots: {
     index: true,
@@ -68,7 +71,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <GlobalEffects>
-          {children}
+          <AppShell>{children}</AppShell>
         </GlobalEffects>
       </body>
     </html>

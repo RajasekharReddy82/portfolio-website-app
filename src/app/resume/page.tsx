@@ -2,15 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Download, Mail, Phone, Linkedin, MapPin, Briefcase, GraduationCap } from "lucide-react";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { Badge } from "@/components/ui/Badge";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 export default function Resume() {
   const handleDownload = () => {
@@ -24,11 +21,7 @@ export default function Resume() {
 
   return (
     <>
-      <CustomCursor />
-      <ScrollProgress />
       <AnimatedGradient />
-      <Navbar />
-
       <main id="main-content" className="relative z-10 min-h-screen pt-20">
             {/* Hero */}
             <section className="pb-8">
@@ -111,12 +104,13 @@ export default function Resume() {
                     {resumeData.personal.phone}
                   </a>
                   <a
-                    href={`https://${resumeData.personal.linkedin}`}
+                    href={siteConfig.socialLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-white/60 hover:text-cyan-400 transition-colors"
+                    aria-label="LinkedIn profile (opens in new tab)"
                   >
-                    <Linkedin size={18} className="text-cyan-400" />
+                    <Linkedin size={18} className="text-cyan-400" aria-hidden />
                     LinkedIn
                   </a>
                 </div>
@@ -226,8 +220,6 @@ export default function Resume() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }

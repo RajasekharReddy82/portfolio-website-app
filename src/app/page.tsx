@@ -3,9 +3,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import { ArrowUpRight, Download, Linkedin, Mail, ArrowDown, Sparkles } from "lucide-react";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import {
+  ArrowUpRight,
+  Download,
+  Linkedin,
+  Mail,
+  ArrowDown,
+  Sparkles,
+} from "lucide-react";
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
 import { MorphingBlob } from "@/components/ui/MorphingBlob";
 import { SplitText } from "@/components/ui/SplitText";
@@ -16,10 +21,9 @@ import { TextScramble } from "@/components/ui/TextScramble";
 import { HorizontalScroll } from "@/components/ui/HorizontalScroll";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { Marquee } from "@/components/ui/Marquee";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/Badge";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 const roles = [
   "Frontend Technical Lead",
@@ -27,18 +31,6 @@ const roles = [
   "TypeScript Developer",
   "JavaScript Developer",
   "Web Performance Optimizer",
-];
-
-const stats = [
-  { value: 6, label: "Years Experience", suffix: "+" },
-  { value: 10, label: "Projects Delivered", suffix: "+" },
-  { value: 98, label: "Client Satisfaction", suffix: "%" },
-  { value: 40, label: "Code Reduction", suffix: "%" },
-];
-
-const techStack = [
-  "React 19", "TypeScript", "Next.js", "Redux", "TanStack Query", "Tailwind CSS",
-  "Cypress", "Jest", "Azure DevOps", "Performance", "Accessibility", "Vite",
 ];
 
 export default function Home() {
@@ -67,10 +59,6 @@ export default function Home() {
   return (
     <>
       <LoadingScreen />
-      <CustomCursor />
-      <ScrollProgress />
-      <Navbar />
-
       <main className="relative z-10">
         {/* Hero Section */}
         <section
@@ -78,8 +66,16 @@ export default function Home() {
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
           {/* Morphing blobs */}
-          <MorphingBlob color="cyan" size="xl" className="-left-64 top-20 opacity-60" />
-          <MorphingBlob color="purple" size="xl" className="-right-64 bottom-20 opacity-60" />
+          <MorphingBlob
+            color="cyan"
+            size="xl"
+            className="-left-64 top-20 opacity-60"
+          />
+          <MorphingBlob
+            color="purple"
+            size="xl"
+            className="-right-64 bottom-20 opacity-60"
+          />
 
           <motion.div
             className="container mx-auto px-6 text-center relative z-10"
@@ -94,7 +90,9 @@ export default function Home() {
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-5 py-2 text-sm text-green-400 backdrop-blur-sm">
                 <Sparkles className="h-4 w-4" />
-                <span className="font-medium">Available for new opportunities</span>
+                <span className="font-medium">
+                  Available for new opportunities
+                </span>
               </span>
             </motion.div>
 
@@ -147,8 +145,8 @@ export default function Home() {
               className="mx-auto max-w-2xl text-lg text-white/50 mb-12"
             >
               Building premium, accessible, and performant web experiences with{" "}
-              <span className="text-cyan-400 font-medium">6.5+ years</span> of expertise
-              in modern frontend development.
+              <span className="text-cyan-400 font-medium">6.5+ years</span> of
+              expertise in modern frontend development.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -197,20 +195,24 @@ export default function Home() {
               className="flex items-center justify-center gap-6"
             >
               <a
-                href={`mailto:${resumeData.personal.email}`}
+                href={`mailto:${siteConfig.socialLinks.email}`}
                 className="group flex items-center gap-2 text-white/40 hover:text-cyan-400 transition-colors"
+                aria-label="Email me"
               >
-                <Mail className="h-5 w-5" />
+                <Mail className="h-5 w-5" aria-hidden />
                 <span className="text-sm hidden sm:inline">Email</span>
               </a>
-              <span className="text-white/20">|</span>
+              <span className="text-white/20" aria-hidden>
+                |
+              </span>
               <a
-                href={resumeData.personal.linkedin}
+                href={siteConfig.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 text-white/40 hover:text-cyan-400 transition-colors"
+                aria-label="LinkedIn profile (opens in new tab)"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin className="h-5 w-5" aria-hidden />
                 <span className="text-sm hidden sm:inline">LinkedIn</span>
               </a>
             </motion.div>
@@ -235,7 +237,9 @@ export default function Home() {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="flex flex-col items-center gap-2"
               >
-                <span className="text-xs uppercase tracking-widest">Scroll</span>
+                <span className="text-xs uppercase tracking-widest">
+                  Scroll
+                </span>
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-1" />
               </motion.div>
             </motion.button>
@@ -243,48 +247,44 @@ export default function Home() {
         </section>
 
         {/* Tech Stack Marquee */}
-        <section className="py-4 border-y border-white/5">
-          <Marquee speed={40}>
-            {techStack.map((tech, i) => (
-              <span
-                key={i}
-                className="mx-8 text-lg font-medium text-white/20 hover:text-cyan-400 transition-colors cursor-default"
-              >
-                {tech}
-              </span>
-            ))}
-          </Marquee>
+        <section
+          className="py-4 border-y border-white/5"
+          aria-label="Technologies used"
+        >
+          <Marquee items={siteConfig.techStack} speed={40} />
         </section>
 
-        {/* Stats Section */}
-        <section className="py-12">
-          <div className="container mx-auto px-6">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                >
-                  <GradientBorder className="p-6 text-center group hover:border-cyan-400/30 transition-colors">
-                    <div className="text-4xl md:text-5xl font-display font-bold mb-2">
-                      <NumberCounter
-                        value={stat.value}
-                        suffix={stat.suffix}
-                        className="text-white"
-                      />
-                    </div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider group-hover:text-cyan-400/80 transition-colors">
-                      {stat.label}
-                    </div>
-                  </GradientBorder>
-                </motion.div>
-              ))}
+        {/* Stats Section – only show stats with real values from config */}
+        {siteConfig.stats.length > 0 && (
+          <section className="py-12" aria-label="Key metrics">
+            <div className="container mx-auto px-6">
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {siteConfig.stats.map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                  >
+                    <GradientBorder className="p-6 text-center group hover:border-cyan-400/30 transition-colors">
+                      <div className="text-4xl md:text-5xl font-display font-bold mb-2">
+                        <NumberCounter
+                          value={stat.value}
+                          suffix={stat.suffix}
+                          className="text-white"
+                        />
+                      </div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider group-hover:text-cyan-400/80 transition-colors">
+                        {stat.label}
+                      </div>
+                    </GradientBorder>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* About Preview */}
         <section className="py-12 relative overflow-hidden">
@@ -309,8 +309,18 @@ export default function Home() {
                   {resumeData.personal.summary.slice(0, 2).join(". ")}.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {["React 19", "TypeScript", "Next.js", "Performance", "Accessibility"].map((skill) => (
-                    <Badge key={skill} variant="accent" className="px-3 py-1.5 text-xs">
+                  {[
+                    "React 19",
+                    "TypeScript",
+                    "Next.js",
+                    "Performance",
+                    "Accessibility",
+                  ].map((skill) => (
+                    <Badge
+                      key={skill}
+                      variant="accent"
+                      className="px-3 py-1.5 text-xs"
+                    >
                       {skill}
                     </Badge>
                   ))}
@@ -344,17 +354,49 @@ export default function Home() {
                       <code>
                         <span className="text-purple-400/90">const</span>{" "}
                         <span className="text-cyan-400">developer</span> = {"{"}
-                        {"\n"}  name: <span className="text-emerald-400">&quot;Rajasekhar Reddy&quot;</span>,
-                        {"\n"}  role: <span className="text-emerald-400">&quot;Technical Lead&quot;</span>,
-                        {"\n"}  experience: <span className="text-yellow-400 font-semibold">6.5</span>,
-                        {"\n"}  skills: [
-                        {"\n"}    <span className="text-emerald-400">&quot;React&quot;</span>,
-                        {"\n"}    <span className="text-emerald-400">&quot;TypeScript&quot;</span>,
-                        {"\n"}    <span className="text-emerald-400">&quot;JavaScript&quot;</span>,
-                        {"\n"}    <span className="text-emerald-400">&quot;Performance Optimization & Scalability&quot;</span>
-                        {"\n"}  ],
-                        {"\n"}  passion: <span className="text-emerald-400">&quot;Building amazing UIs&quot;</span>
-                        {"\n"}{"}"};
+                        {"\n"} name:{" "}
+                        <span className="text-emerald-400">
+                          &quot;Rajasekhar Reddy&quot;
+                        </span>
+                        ,{"\n"} role:{" "}
+                        <span className="text-emerald-400">
+                          &quot;Technical Lead&quot;
+                        </span>
+                        ,{"\n"} experience:{" "}
+                        <span className="text-yellow-400 font-semibold">
+                          6.5
+                        </span>
+                        ,{"\n"} skills: [{"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;React&quot;
+                        </span>
+                        ,{"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;Next Js&quot;
+                        </span>
+                        ,{"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;TypeScript&quot;
+                        </span>
+                        ,{"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;JavaScript&quot;
+                        </span>
+                        ,{"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;Performance Optimization & Scalability&quot;
+                        </span>
+                        {"\n"}{" "}
+                        <span className="text-emerald-400">
+                          &quot;Accessibility&quot;
+                        </span>
+                        {"\n"} ],
+                        {"\n"} passion:{" "}
+                        <span className="text-emerald-400">
+                          &quot;Building amazing UIs&quot;
+                        </span>
+                        {"\n"}
+                        {"}"};
                       </code>
                     </pre>
                   </div>
@@ -397,7 +439,11 @@ export default function Home() {
 
           <HorizontalScroll>
             {featuredProjects.map((project, i) => (
-              <Link key={project.id} href={`/projects/${project.slug}`} className="flex-shrink-0">
+              <Link
+                key={project.id}
+                href={`/projects/${project.slug}`}
+                className="flex-shrink-0"
+              >
                 <TiltCard>
                   <motion.div
                     className="group relative h-[450px] w-[380px] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8"
@@ -429,7 +475,11 @@ export default function Home() {
                       <div>
                         <div className="mb-6 flex flex-wrap gap-2">
                           {project.techStack.slice(0, 3).map((tech) => (
-                            <Badge key={tech} variant="primary" className="text-xs">
+                            <Badge
+                              key={tech}
+                              variant="primary"
+                              className="text-xs"
+                            >
                               {tech}
                             </Badge>
                           ))}
@@ -467,7 +517,9 @@ export default function Home() {
                   >
                     →
                   </motion.div>
-                  <div className="text-sm font-medium text-white/60">View all projects</div>
+                  <div className="text-sm font-medium text-white/60">
+                    View all projects
+                  </div>
                 </div>
               </motion.div>
             </Link>
@@ -476,8 +528,16 @@ export default function Home() {
 
         {/* CTA Section */}
         <section className="py-12 md:py-16 relative overflow-hidden">
-          <MorphingBlob color="cyan" size="xl" className="absolute -left-64 top-1/2 -translate-y-1/2 opacity-40" />
-          <MorphingBlob color="purple" size="lg" className="absolute -right-32 top-0 opacity-30" />
+          <MorphingBlob
+            color="cyan"
+            size="xl"
+            className="absolute -left-64 top-1/2 -translate-y-1/2 opacity-40"
+          />
+          <MorphingBlob
+            color="purple"
+            size="lg"
+            className="absolute -right-32 top-0 opacity-30"
+          />
 
           <div className="container mx-auto px-6 text-center relative z-10">
             <motion.div
@@ -493,7 +553,8 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-base md:text-lg text-white/50 mb-8 max-w-xl mx-auto">
-                Ready to build something exceptional? Let&apos;s discuss your next project.
+                Ready to build something exceptional? Let&apos;s discuss your
+                next project.
               </p>
               <Link href="/contact">
                 <motion.button
@@ -511,8 +572,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }

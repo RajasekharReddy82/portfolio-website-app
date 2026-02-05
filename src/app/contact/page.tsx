@@ -3,16 +3,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Mail, Phone, Linkedin, MapPin, Send, ArrowUpRight, Sparkles, MessageSquare, CheckCircle2, X } from "lucide-react";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { GlowingOrb } from "@/components/ui/GlowingOrb";
 import { MorphingBlob } from "@/components/ui/MorphingBlob";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -96,7 +93,7 @@ export default function Contact() {
       icon: Linkedin,
       label: "LinkedIn",
       value: "Connect with me",
-      href: `https://${resumeData.personal.linkedin}`,
+      href: siteConfig.socialLinks.linkedin,
       color: "blue",
       description: "Let's connect professionally",
     },
@@ -104,11 +101,7 @@ export default function Contact() {
 
   return (
     <>
-      <CustomCursor />
-      <ScrollProgress />
       <AnimatedGradient />
-      <Navbar />
-
       <main id="main-content" className="relative z-10 min-h-screen pt-20 overflow-hidden">
         <MorphingBlob color="cyan" size="xl" className="absolute -right-64 top-20 opacity-30" />
         <MorphingBlob color="purple" size="lg" className="absolute -left-48 bottom-20 opacity-30" />
@@ -133,7 +126,7 @@ export default function Contact() {
                 <span className="text-sm font-medium text-cyan-400">Available for new projects</span>
               </motion.div>
 
-              <h1 className="mb-6 font-display text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+              <h1 className="mb-6 font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
                 <TextReveal>Let&apos;s build</TextReveal>
                 <br />
                 <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
@@ -144,7 +137,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-xl md:text-2xl text-white/60 max-w-2xl mx-auto leading-relaxed"
+                className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed"
               >
                 Ready to turn your vision into reality? Let&apos;s discuss how we can create something extraordinary together.
               </motion.p>
@@ -163,10 +156,10 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="mb-8">
-                  <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+                  <h2 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
                     <TextReveal>Get in touch</TextReveal>
                   </h2>
-                  <p className="text-white/50 text-lg">
+                  <p className="text-white/50 text-base">
                     Choose your preferred way to reach out or use the form
                   </p>
                 </div>
@@ -323,11 +316,11 @@ export default function Contact() {
                     >
                       <MessageSquare className="h-6 w-6 text-cyan-400" />
                     </motion.div>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-white">
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-white">
                       Send a message
                     </h2>
                   </div>
-                  <p className="text-white/50 text-lg">
+                  <p className="text-white/50 text-base">
                     Fill out the form and I&apos;ll get back to you soon
                   </p>
                 </div>
@@ -658,7 +651,6 @@ export default function Contact() {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 }

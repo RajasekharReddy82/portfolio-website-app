@@ -4,35 +4,35 @@ import { NextRequest, NextResponse } from "next/server";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface ContactFormData {
-    name: string;
-    email: string;
-    phone?: string;
-    subject: string;
-    message: string;
+  name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
 }
 
 // Validation helpers
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function validateFormData(data: Partial<ContactFormData>): string | null {
-    const { name, email, subject, message } = data;
+  const { name, email, subject, message } = data;
 
-    if (!name || !email || !subject || !message) {
-        return "All fields are required";
-    }
+  if (!name || !email || !subject || !message) {
+    return "All fields are required";
+  }
 
-    if (!EMAIL_REGEX.test(email)) {
-        return "Invalid email format";
-    }
+  if (!EMAIL_REGEX.test(email)) {
+    return "Invalid email format";
+  }
 
-    return null;
+  return null;
 }
 
 // Email template generators
 function generateHtmlEmail(data: ContactFormData): string {
-    const { name, email, phone, subject, message } = data;
+  const { name, email, phone, subject, message } = data;
 
-    return `
+  return `
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -217,7 +217,9 @@ function generateHtmlEmail(data: ContactFormData): string {
                 </td>
               </tr>
               
-              ${phone ? `
+              ${
+                phone
+                  ? `
               <tr class="info-row">
                 <td class="info-label-cell">
                   <p class="info-label">Phone</p>
@@ -228,7 +230,9 @@ function generateHtmlEmail(data: ContactFormData): string {
                   </p>
                 </td>
               </tr>
-              ` : ''}
+              `
+                  : ""
+              }
               
               <tr class="info-row">
                 <td class="info-label-cell">
@@ -257,9 +261,9 @@ function generateHtmlEmail(data: ContactFormData): string {
 }
 
 function generateTextEmail(data: ContactFormData): string {
-    const { name, email, phone, subject, message } = data;
+  const { name, email, phone, subject, message } = data;
 
-    return `
+  return `
 ═══════════════════════════════════════════════════════
   NEW CONTACT FORM SUBMISSION
 ═══════════════════════════════════════════════════════
@@ -269,10 +273,14 @@ function generateTextEmail(data: ContactFormData): string {
 
 📧 Email Address:
    ${email}
-${phone ? `
+${
+  phone
+    ? `
 📱 Phone Number:
    ${phone}
-` : ''}
+`
+    : ""
+}
 📌 Subject:
    ${subject}
 
@@ -289,75 +297,77 @@ Reply directly to this email to respond to ${name}.
 }
 
 function escapeHtml(text: string): string {
-    const map: Record<string, string> = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;",
-    };
-    return text.replace(/[&<>"']/g, (m) => map[m]);
+  const map: Record<string, string> = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 // Email sending logic
-async function sendEmail(data: ContactFormData): Promise<{ success: boolean; error?: string }> {
-    const recipientEmail =
-        process.env.RESEND_RECIPIENT_EMAIL || "rajasekharreddy82979@gmail.com";
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+async function sendEmail(
+  data: ContactFormData,
+): Promise<{ success: boolean; error?: string }> {
+  const recipientEmail =
+    process.env.RESEND_RECIPIENT_EMAIL || "rajasekharreddy82979@gmail.com";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
 
-    try {
-        const { error } = await resend.emails.send({
-            from: fromEmail,
-            to: recipientEmail,
-            replyTo: data.email,
-            subject: `Portfolio Contact: ${data.subject}`,
-            html: generateHtmlEmail(data),
-            text: generateTextEmail(data),
-        });
+  try {
+    const { error } = await resend.emails.send({
+      from: fromEmail,
+      to: recipientEmail,
+      replyTo: data.email,
+      subject: `Portfolio Contact: ${data.subject}`,
+      html: generateHtmlEmail(data),
+      text: generateTextEmail(data),
+    });
 
-        if (error) {
-            console.error("Resend error:", error);
-            return { success: false, error: "Failed to send email" };
-        }
-
-        return { success: true };
-    } catch (error) {
-        console.error("Email sending error:", error);
-        return { success: false, error: "Internal server error" };
+    if (error) {
+      console.error("Resend error:", error);
+      return { success: false, error: "Failed to send email" };
     }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Email sending error:", error);
+    return { success: false, error: "Internal server error" };
+  }
 }
 
 // API route handler
 export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
-        const formData = body as Partial<ContactFormData>;
+  try {
+    const body = await request.json();
+    const formData = body as Partial<ContactFormData>;
 
-        // Validate form data
-        const validationError = validateFormData(formData);
-        if (validationError) {
-            return NextResponse.json({ error: validationError }, { status: 400 });
-        }
-
-        // Send email
-        const result = await sendEmail(formData as ContactFormData);
-
-        if (!result.success) {
-            return NextResponse.json(
-                { error: result.error || "Failed to send email" },
-                { status: 500 }
-            );
-        }
-
-        return NextResponse.json(
-            { success: true, message: "Email sent successfully" },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error("Request processing error:", error);
-        return NextResponse.json(
-            { error: "Internal server error" },
-            { status: 500 }
-        );
+    // Validate form data
+    const validationError = validateFormData(formData);
+    if (validationError) {
+      return NextResponse.json({ error: validationError }, { status: 400 });
     }
+
+    // Send email
+    const result = await sendEmail(formData as ContactFormData);
+
+    if (!result.success) {
+      return NextResponse.json(
+        { error: result.error || "Failed to send email" },
+        { status: 500 },
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Email sent successfully" },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Request processing error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }

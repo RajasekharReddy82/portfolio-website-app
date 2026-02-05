@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -72,21 +73,23 @@ export const Footer = () => {
               </h3>
               <div className="flex flex-col gap-3">
                 <a
-                  href={`mailto:${resumeData.personal.email}`}
+                  href={`mailto:${siteConfig.socialLinks.email}`}
                   className="flex items-center gap-2 text-white/60 transition-colors hover:text-cyan-400"
                   data-cursor="Email"
+                  aria-label="Email me"
                 >
-                  <Mail size={16} />
+                  <Mail size={16} aria-hidden />
                   <span>Email</span>
                 </a>
                 <a
-                  href={`https://${resumeData.personal.linkedin}`}
+                  href={siteConfig.socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-white/60 transition-colors hover:text-cyan-400"
                   data-cursor="LinkedIn"
+                  aria-label="LinkedIn profile (opens in new tab)"
                 >
-                  <Linkedin size={16} />
+                  <Linkedin size={16} aria-hidden />
                   <span>LinkedIn</span>
                 </a>
               </div>

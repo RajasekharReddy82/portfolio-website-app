@@ -68,7 +68,8 @@ body {
   transition: top 0.3s ease;
 }
 
-.skip-to-content:focus {
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
   top: 16px;
 }
 

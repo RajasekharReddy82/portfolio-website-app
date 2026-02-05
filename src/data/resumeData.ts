@@ -1,3 +1,13 @@
+/** Verifiable proof items for project pages (e.g. sitemap, a11y checks, Lighthouse note). */
+export interface ProjectProof {
+  /** Short note about Lighthouse/performance (only if measured). */
+  lighthouseNote?: string;
+  /** Link to sitemap or other verifiable asset. */
+  sitemapLink?: string;
+  /** List of accessibility checks performed. */
+  a11yChecks?: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -14,6 +24,10 @@ export interface Project {
   results: string[];
   learnings: string[];
   highlights?: string[];
+  /** Verifiable metrics (e.g. "Vulnerabilities: 143 → 17 → 0"). */
+  metrics?: string[];
+  /** Proof section: Lighthouse note, sitemap link, a11y checks. */
+  proof?: ProjectProof;
   liveUrl?: string;
   featured?: boolean;
   isPersonal?: boolean;
@@ -76,7 +90,7 @@ export const resumeData: ResumeData = {
     location: "Hyderabad, India",
     email: "rajasekharreddy761@gmail.com",
     phone: "+91-8297971563",
-    linkedin: "https://linkedin.com/in/rajasekhar-reddy-dugganapalli-513452227",
+    linkedin: "rajasekhar-reddy-dugganapalli-513452227",
     summary: [
       "6.5+ years of experience building scalable web applications with React.js (V19.1) and TypeScript",
       "Proficient in HTML, CSS, JavaScript, React.js, React Hooks, Functional Components, Redux, Redux-Saga, TypeScript and Tailwind CSS",
@@ -149,6 +163,10 @@ export const resumeData: ResumeData = {
         "Improved consistency, scalability, accessibility, and performance by standardizing table behavior",
         "Enhanced application performance through component memoization and lazy loading",
         "Full CI/CD pipeline with Azure DevOps and monitoring via Application Insights",
+      ],
+      metrics: [
+        "CRA → Vite migration: build and tooling vulnerabilities reduced (143 → 17 → 0 after remediation)",
+        "Zero regressions post-migration; all dependencies upgraded to latest stable versions",
       ],
       learnings: [
         "Deep understanding of build tooling differences between CRA and Vite",
@@ -438,18 +456,24 @@ export const resumeData: ResumeData = {
       challenges: [
         "Creating a premium design system with glassmorphism effects",
         "Implementing smooth animations without performance degradation",
-        "Ensuring full accessibility compliance (WCAG)",
-        "Optimizing for Lighthouse scores (90+)",
-        "Building reusable components with consistent styling",
+        "Building reusable components with consistent styling and accessibility in mind",
       ],
       results: [
         "Premium glassmorphism + gradient mesh design system",
         "Smooth micro-interactions and page transitions",
-        "Fully accessible with keyboard navigation and ARIA labels",
-        "High performance with optimized animations",
-        "SEO-ready with sitemap and meta tags",
+        "Keyboard navigation, ARIA labels, and skip-to-content link implemented",
+        "SEO: sitemap.xml and robots.txt; per-route metadata and OG tags",
         "Fully responsive across all device sizes",
       ],
+      proof: {
+        sitemapLink: "/sitemap.xml",
+        a11yChecks: [
+          "Single H1 per page, logical heading order",
+          "Skip-to-content link; visible focus styles",
+          "ARIA labels on icon links; semantic HTML",
+          "Color contrast and prefers-reduced-motion respected",
+        ],
+      },
       learnings: [
         "Next.js 14 App Router architecture and best practices",
         "Advanced Framer Motion animation patterns",

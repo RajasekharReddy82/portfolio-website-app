@@ -3,25 +3,18 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { MapPin, Mail, Phone, Linkedin, CheckCircle, Award, ExternalLink, Calendar, Building2, Briefcase } from "lucide-react";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { GlowingOrb } from "@/components/ui/GlowingOrb";
 import { Badge } from "@/components/ui/Badge";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { resumeData } from "@/data/resumeData";
+import { siteConfig } from "@/config/site";
 
 export default function About() {
   return (
     <>
-      <CustomCursor />
-      <ScrollProgress />
       <AnimatedGradient />
-      <Navbar />
-
       <main id="main-content" className="relative z-10 min-h-screen pt-20">
         {/* Ambient glow */}
         <GlowingOrb color="purple" size="lg" className="fixed top-40 -right-32 opacity-40" />
@@ -141,13 +134,14 @@ export default function About() {
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Linkedin size={18} className="text-cyan-400" />
+                        <Linkedin size={18} className="text-cyan-400" aria-hidden />
                         <a
-                          href={`https://${resumeData.personal.linkedin}`}
+                          href={siteConfig.socialLinks.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="hover:text-cyan-400 transition-colors"
                           data-cursor="LinkedIn"
+                          aria-label="LinkedIn profile (opens in new tab)"
                         >
                           LinkedIn Profile
                         </a>
@@ -221,6 +215,44 @@ export default function About() {
                 </GlowCard>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* AI-Assisted Development */}
+        <section className="pb-16" aria-labelledby="ai-assisted-heading">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <GlowCard className="border-cyan-400/10">
+                <h2
+                  id="ai-assisted-heading"
+                  className="mb-6 font-display text-2xl font-bold text-white md:text-3xl"
+                >
+                  {siteConfig.aiAssistedDevelopment.sectionTitle}
+                </h2>
+                <p className="mb-6 text-white/70 leading-relaxed">
+                  {siteConfig.aiAssistedDevelopment.intro[0]}{" "}
+                  {siteConfig.aiAssistedDevelopment.intro[1]}
+                </p>
+
+                <h3 className="mb-3 font-display text-lg font-semibold text-white">
+                  {siteConfig.aiAssistedDevelopment.howIUseTitle}
+                </h3>
+                <ul className="mb-6 list-disc space-y-2 pl-5 text-white/70">
+                  {siteConfig.aiAssistedDevelopment.howIUse.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+
+                <p className="border-t border-white/10 pt-4 text-sm italic text-white/60">
+                  {siteConfig.aiAssistedDevelopment.credibilityLine}
+                </p>
+              </GlowCard>
+            </motion.div>
           </div>
         </section>
 
@@ -488,8 +520,6 @@ export default function About() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }

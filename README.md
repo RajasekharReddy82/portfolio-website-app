@@ -8,8 +8,7 @@ A premium, animation-rich portfolio website built with Next.js, TypeScript, Tail
 - **Smooth Animations**: Framer Motion powered page transitions and micro-interactions
 - **Fully Responsive**: Optimized for all device sizes
 - **Accessibility First**: Keyboard navigation, ARIA labels, reduced motion support
-- **Performance Optimized**: 90+ Lighthouse score target
-- **SEO Ready**: Meta tags, sitemap, robots.txt
+- **SEO Ready**: Meta tags, sitemap.xml, robots.txt
 
 ## Tech Stack
 
@@ -110,12 +109,10 @@ src/
 
 ## Customization
 
-All content is centralized in `src/data/resumeData.ts`. Update this file to customize:
-- Personal information
-- Projects
-- Experience
-- Skills
-- Education
+Content and links are centralized in two places:
+
+- **Site config** (`src/config/site.ts`): Base URL, metadata, social links (LinkedIn, email), home stats, tech stack.
+- **Resume/content** (`src/data/resumeData.ts`): Personal info, projects, experience, skills, education.
 
 ## Design System
 
@@ -143,6 +140,15 @@ The design uses CSS variables defined in `src/app/globals.css`:
 - Dynamic imports for heavy components
 - Optimized animations (GPU-friendly)
 - Code splitting via Next.js App Router
+
+## Verification checklist (post-deploy)
+
+- **External links**: Confirm LinkedIn and email open correctly (no `https://https//`).
+- **Stats**: Home shows only real metrics from `src/config/site.ts` (Years Experience, Projects Delivered); no 0% placeholders.
+- **Marquee**: One accessible copy of tech stack (screen readers); looping animation unchanged.
+- **Sitemap & robots**: Open `https://<your-domain>/sitemap.xml` and `https://<your-domain>/robots.txt`.
+- **Lighthouse**: Run `npx lighthouse https://<your-domain> --view` (or CI). Expect Performance, Accessibility, Best Practices, SEO in 80–95+ depending on host; no fake score claims in copy.
+- **Accessibility**: Tab through the site (skip-to-content first), single H1 per page, heading order (H1 → H2 → H3), visible focus ring on interactive elements.
 
 ## License
 

@@ -4,15 +4,11 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Search, ArrowUpRight, X } from "lucide-react";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AnimatedGradient } from "@/components/ui/AnimatedGradient";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { GlowCard } from "@/components/ui/GlowCard";
 import { GlowingOrb } from "@/components/ui/GlowingOrb";
 import { Badge } from "@/components/ui/Badge";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { resumeData } from "@/data/resumeData";
 
 export default function Projects() {
@@ -50,11 +46,7 @@ export default function Projects() {
 
   return (
     <>
-      <CustomCursor />
-      <ScrollProgress />
       <AnimatedGradient />
-      <Navbar />
-
       <main id="main-content" className="relative z-10 min-h-screen pt-20">
         {/* Ambient glow */}
         <GlowingOrb color="cyan" size="lg" className="fixed top-20 -left-32 opacity-50" />
@@ -319,8 +311,6 @@ export default function Projects() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { siteConfig } from "@/config/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,7 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://rajasekharreddy.dev/sitemap.xml",
+    sitemap: `${siteConfig.baseUrl}/sitemap.xml`,
   };
 }
-
